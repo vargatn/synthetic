@@ -1,7 +1,7 @@
 ---
 title: About Us
 layout: template
-filename: about.md
+filename: about
 --- 
 
 # About Us
