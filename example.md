@@ -31,9 +31,6 @@ of course the obvious bright star betrays real observations, but those are actua
 
 These images are rendered to include faint galaxies and stars too, and incorporate a photometry, shear and redshift catalog underlying each image.
 
-![Synthetic Cluster](./Example_cluster_deconstruction_v6_raw_tile1.png)
-
-
 ![Photometry catalog](./Example_cluster_deconstruction_v6_raw_tile3.png)
 
 ![Shear and Redshift catalog](./Example_cluster_deconstruction_v6_raw_tile4.png)
