@@ -32,12 +32,11 @@ of course the obvious bright star betrays real observations, but those are actua
 These images are rendered to include faint galaxies and stars too, and incorporate a photometry, shear and redshift catalog underlying each image.
 
 
-Brightness distribution of the synthetic light sources for cluster members (red/brown) and
-foreground and background objects (blue). Darker shades and larger symbols correspond to
-brighter objects. 
 ![Photometry catalog](./Example_cluster_deconstruction_v6_raw_tile3.png)
+This above figure shows the brightness distribution of the synthetic light sources for cluster members (red/brown) and
+foreground and background objects (blue). Darker shades and larger symbols correspond to brighter objects. 
 
-Exaggerated shear map of background sources (magenta ellipses) with the shade representing redshift, cluster members (black) and foreground sources (blue)
 ![Shear and Redshift catalog](./Example_cluster_deconstruction_v6_raw_tile4.png)
+The above figure shows an exaggerated shear map of background sources (magenta ellipses, their ellipticity corresponds to approximately 20 times the gravitational shear) with the shade representing redshift, cluster members (black) and foreground sources (blue).
 
 
