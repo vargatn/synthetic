@@ -13,8 +13,6 @@ We aim to create a full synthetic testbed for **cluster weak lensing measurement
 
 ## Can you guess which of these is real, and which is synthetic?
 
-(does not count to scroll down ;)
-
 ![Which is the real cluster?](./Example_cluster_deconstruction_v6_raw_tile0b.png)
 ![Which is the real cluster?](./Example_cluster_deconstruction_v6_raw_tile1b.png)
 
