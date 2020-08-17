@@ -1,7 +1,7 @@
 ---
 title: Synthetic Sky
 layout: template
-filename: index.md
+filename: index
 --- 
 
 
