@@ -7,3 +7,16 @@ filename: example
 # Example Gallery
 
 Images go here
+
+![image info](./images/Example_cluster_deconstruction_v6_raw_tile0.png)
+
+![image info](./images/Example_cluster_deconstruction_v6_raw_tile0b.png)
+
+![image info](./images/Example_cluster_deconstruction_v6_raw_tile1.png)
+
+![image info](./images/Example_cluster_deconstruction_v6_raw_tile1b.png)
+
+
+![image info](./images/Example_cluster_deconstruction_v6_raw_tile3.png)
+
+![image info](./images/Example_cluster_deconstruction_v6_raw_tile4.png)
