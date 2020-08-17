@@ -8,15 +8,15 @@ filename: example
 
 Images go here
 
-![image info](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile0.png)
-
-![image info](./images/Example_cluster_deconstruction_v6_raw_tile0b.png)
-
-![image info](./images/Example_cluster_deconstruction_v6_raw_tile1.png)
-
-![image info](./images/Example_cluster_deconstruction_v6_raw_tile1b.png)
+![Which is the real cluster?](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile0b.png)
+![Which is the real cluster?](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile1b.png)
 
 
-![image info](./images/Example_cluster_deconstruction_v6_raw_tile3.png)
+![redMaPPer Cluster in DES](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile0.png)
+![Synthetic Cluster](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile1.png)
 
-![image info](./images/Example_cluster_deconstruction_v6_raw_tile4.png)
+
+
+![Photometry catalog](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile3.png)
+
+![Shear and Redshift catalog](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile4.png)
