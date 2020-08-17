@@ -8,7 +8,7 @@ filename: example
 
 Images go here
 
-![image info](./images/Example_cluster_deconstruction_v6_raw_tile0.png)
+![image info](https://github.com/vargatn/synthetic/blob/gh-pages/Example_cluster_deconstruction_v6_raw_tile0.png)
 
 ![image info](./images/Example_cluster_deconstruction_v6_raw_tile0b.png)
 
