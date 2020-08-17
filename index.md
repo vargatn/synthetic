@@ -23,7 +23,7 @@ To see the answer, check out our [Gallery](example.md)
 
 ## What's the point? 
 
-The performance of weak lensing measurements cannot be a-priory guaranteed, it needs to be validated in a series of tests, mock
+The performance of weak lensing measurements cannot be a-priori guaranteed, it needs to be validated in a series of tests, mock
 observations, and image simulations.
 
 The interplay between different observational and systematic effects can be best characterized in a unified benchmark which tests the measurement in an
