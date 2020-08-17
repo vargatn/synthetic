@@ -43,9 +43,7 @@ These mock clusters and lines-of-sight are then rendered into images in the same
 with the standard data reduction and analysis pipelines of the survey.
 
 Galaxy clusters are therefore reconstructed jointly with the line-of-sight galaxies using more precise and
-accurate photometric solutions from the deep field data, and inheriting features not directly mea-
-sured in the wide field, e.g. additional bands, morphology parameters or redshifts. This approach
-shortcuts the computational cost and limited representation of reality of numerical simulations.
+accurate photometric solutions from the deep field data, and inheriting features not directly measured in the wide field, e.g. additional bands, morphology parameters or redshifts. This approach shortcuts the computational cost and limited representation of reality of numerical simulations.
 
 
 ## The benefits of our approach
