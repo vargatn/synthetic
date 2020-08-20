@@ -8,7 +8,7 @@ filename: index
 
 We aim to create a full synthetic testbed for **cluster weak lensing measurements**.  This will enable us to perform a full-scale mock cluster weak lensing analysis in a controlled survey-like environment.
 
-*The detials of this work are part of the PhD thesis of T. N. Varga at LMU Munich (submitted 2020). A pathfinder study is being prepared for publication using preliminary DES Y3 data (Varga et al in prep)*
+*The detials of this work are part a pathfinder study is being prepared for publication using preliminary DES Y3 data (Varga et al in prep)*
 
 
 ## Can you guess which of these is real, and which is synthetic?
