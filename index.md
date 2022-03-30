@@ -5,10 +5,17 @@ filename: index
 --- 
 
 # Synthetic survey-like galaxy cluster observations
+__For astronomers__
 
 We aim to create a full synthetic testbed for **cluster weak lensing measurements**.  This will enable us to perform a full-scale mock cluster weak lensing analysis in a controlled survey-like environment.
 
 *The detials of this work are part a pathfinder study published using DES Y3 data [Varga et al 2021](https://arxiv.org/abs/2102.10414)*
+
+
+__For non-astronomers__
+
+This is a program which makes new images of the night sky showing us many different versions of how the world could look like according to our scientific knowledge, and the results are indistinguishable from real ones even by experts. The core innovation is the algorithm which combines existing knowledge in a new way, and smartly fills in the blanks to provide a consistent picture of how the world could be. The algorithm can be adapted for any other kind of images or datasets with ease, where new, synthetic versions of reality are wanted.
+
 
 
 ## Can you guess which of these is real, and which is synthetic?
@@ -19,7 +26,6 @@ We aim to create a full synthetic testbed for **cluster weak lensing measurement
 One of these is a redMaPPer selected cluster, and the other is created using our statistical learning algorithm, rendered into survey-like observation from an underlying mock photometry catalog.
 
 To see the answer, check out our [Gallery](example.md)
-
 
 ## What's the point? 
 
