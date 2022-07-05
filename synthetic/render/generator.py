@@ -26,6 +26,8 @@ class MockupSurvey(object):
 
 
 
+
+
     def draw(self, num=1e4):
         num = float(num)
 
