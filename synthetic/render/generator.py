@@ -24,7 +24,7 @@ class MockupSurvey(object):
         self.maglim = maglim
         self.rng = np.random.RandomState(seed)
 
-
+        
 
 
 
