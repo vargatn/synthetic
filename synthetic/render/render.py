@@ -1,7 +1,7 @@
 """
 Galsim rendering backend
 
-the first stretch goal is to build a stand alone renderer which is encapsulated in a class. The 
+the first stretch goal is to build a stand alone renderer which is encapsulated in a class. The
 
 # TODO add input catalog specification here
 
@@ -13,6 +13,18 @@ the first stretch goal is to build a stand alone renderer which is encapsulated 
 
 import numpy as np
 
+
+class DrawField(object):
+    def __init__(self, canvas_size, catalog, band="g"):
+        self.canvas_size = canvas_size
+        self.catalog = catalog
+        self.band = band
+
+    def make_canvas(self):
+        pass
+
+    def draw_objects(self):
+        pass
 
 
 def scale_image(canvas):
