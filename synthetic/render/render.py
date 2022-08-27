@@ -52,8 +52,8 @@ class DrawField(object):
 
     def make_positions(self):
 
-        self.xx = catalog['X'][:] - self.canvas_cen[0]
-        self.yy = catalog['Y'][:] - self.canvas_cen[1]
+        self.xx = self.catalog['X'][:] - self.canvas_cen[0]
+        self.yy = self.catalog['Y'][:] - self.canvas_cen[1]
 
         self.x_cen = np.floor(self.xx)
         self.y_cen = np.floor(self.yy)
@@ -190,6 +190,20 @@ class DrawField(object):
         for i in np.arange(len(self.catalog)):
             stamp = self.stamps[i]
             self.canvas[stamp.bounds] += stamp
+
+
+
+class ICL(object):
+    def __init__(self):
+        """
+        This models the ICL as an interpolator functiom
+
+        evaluates the object
+        """
+        pass
+
+
+
 
 
 def scale_image(canvas):
