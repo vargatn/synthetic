@@ -2,6 +2,9 @@
 Interface to DES ICL measurements
 
 Based on Varga et al 2021
+
+
+# TODO encapsulate the data product better
 """
 
 import numpy as np

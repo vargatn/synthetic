@@ -18,3 +18,35 @@ which you should activate by `conda activate galsim`
 Intall the actual galsim package by
 
     conda install -c conda-forge galsim
+
+
+
+TODO expand:
+Following this install ngmix and ngmixer
+
+Default Use case
+
+Load catalog for Field
+
+Render field
+
+Load catalog for cluster
+
+Render cluster
+
+calculate ICL model for cluster
+
+Overlay ICL model
+
+Save image for cluster
+
+Save location of bounding boxes for objects
+
+Run a simple galsim shear estimator
+
+Run a sextractor on image??? let's hope this works out
+
+
+
+
+
