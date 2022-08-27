@@ -26,7 +26,9 @@ Following this install ngmix and ngmixer
 
 Default Use case
 
-Load catalog for Field
+Load catalog for Field (This should assume a not yet cutout catalog, must include a step which filters for objects which are in the image)
+
+add a step which injects objects only to the overlap area between the stamp and the canvas
 
 Render field
 
