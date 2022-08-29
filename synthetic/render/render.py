@@ -202,6 +202,8 @@ class DrawField(object):
             stamp = self.stamps[i]
             self.canvas[stamp.bounds] += stamp
 
+    def add_icl(self, arr):
+        self.canvas.array += arr
 
 
 
