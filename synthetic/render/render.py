@@ -17,6 +17,7 @@ import ngmix
 import multiprocessing as mp
 from ..tools import partition
 
+
 class DrawField(object):
     def __init__(self, canvas_size, catalog, band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
         """
@@ -195,24 +196,6 @@ class DrawField(object):
             self.canvas[stamp.bounds] += stamp
 
 
-def sigmoid(arr, pos, k,):
-    return 1 / (1 + np.exp((arr - pos) * k))
-
-def tomag(flux):
-    return 30. -2.5 * np.log10(flux)
-
-def toflux(mag):
-    return 10**((mag - 30) / (-2.5))
-
-
-class ICL(object):
-    def __init__(self):
-        """
-        This models the ICL as an interpolator functiom
-
-        evaluates the object
-        """
-        pass
 
 
 

@@ -17,6 +17,72 @@ import scipy.optimize as optimize
 import astropy.cosmology as cosmology
 import astropy.units as u
 
+def sigmoid(arr, pos, k,):
+    return 1 / (1 + np.exp((arr - pos) * k))
+
+def tomag(flux):
+    return 30. -2.5 * np.log10(flux)
+
+def toflux(mag):
+    return 10**((mag - 30) / (-2.5))
+
+
+class DrawICL(object):
+    def __init__(self, mass, z, bcg, galpath, mstarpath, jk_profile_root,
+                 pixel_scale=0.264, canvas_size=5000, H0=70, Om0=0.3):
+        self.mass = mass
+        self.z = z
+        self.bcg = bcg
+        self.pixel_scale = pixel_scale
+        self.canvas_size = canvas_size
+        self.galpath = galpath
+        self.mstarpath = mstarpath
+        self.jk_profile_root = jk_profile_root
+        self.H0 = H0
+        self.Om0 = Om0
+
+    def load_data(self):
+        self.procmag = ProcMag(self.galpath, self.mstarpath)
+        self.iclprof = ICLProf(self.jk_profile_root, self.procmag, H0=self.H0, Om0=self.Om0)
+
+    def prepare_icl(self):
+        sval = np.sqrt(self.bcg["size"])
+
+        xsize = self.canvas_size
+        ysize = self.canvas_size
+        xcen = xsize / 2.
+        ycen = ysize / 2.
+
+        _xx = np.array([np.arange(xsize), ] * ysize) - xcen
+        _yy = np.array([np.arange(ysize), ] * xsize).T - ycen
+        xx = (1 - self.bcg["g1"]) * _xx - self.bcg["g2"] * _yy
+        yy = - self.bcg["g2"] * _xx + (1 + self.bcg["g1"]) * _yy
+        self.rmatrix = np.sqrt(xx ** 2. + yy ** 2.)
+
+        _rvals = self.rmatrix.flatten()
+        _iclarr = self.iclprof.icl_pixes(_rvals, mass=self.mass, z=self.z)
+        iclarr = _iclarr * (1 - sigmoid(_rvals * self.pixel_scale, k=1, pos=sval))
+
+        self.iclvals = iclarr.reshape((ysize, xsize))
+        self.iclvals[self.iclvals < 1.] = 1.
+
+    def colorize_icl(self):
+        self.magvals_i = tomag(self.iclvals)
+        self.magvals_g = self.bcg["color_gr"] + self.bcg["color_ri"] + self.magvals_i
+        self.magvals_r = self.bcg["color_ri"] + self.magvals_i
+        self.magvals_z = self.magvals_i - self.bcg["color_iz"]
+
+        self.flux_g = toflux(self.magvals_g).T
+        self.flux_r = toflux(self.magvals_r).T
+        self.flux_i = toflux(self.magvals_i).T
+        self.flux_z = toflux(self.magvals_z).T
+
+    def get_icl(self):
+
+        self.load_data()
+        self.prepare_icl()
+        self.colorize_icl()
+
 
 def int_schechter(l1, l2):
     """
