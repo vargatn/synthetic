@@ -36,14 +36,21 @@ class DrawField(object):
         self.positions = []
         self.offsets = []
 
+    def render(self, nprocess=10):
+        self.prepare()
+        self.make_infodicts()
+        self.multi_render(nprocess)
+        self.collate_stamps()
+
     def make_canvas(self):
         self.xx = self.catalog['X'] - self.canvas_size / 2
-        self.yy = self.catalog['X'] - self.canvas_size / 2
+        self.yy = self.catalog['Y'] - self.canvas_size / 2
         self.canvas = galsim.ImageF(self.canvas_size, self.canvas_size, scale=self.pixel_scale)
         self.canvas.array[:, :] = 0  # this might be redundant
 
     def make_psf(self):
         self.psf = galsim.Gaussian(fwhm=self.psf_fwhm)
+        self.image_epsf = self.psf.drawImage(scale=self.pixel_scale)
 
     def make_bdf_pars(self):
         self.bdf_pars = np.zeros((len(self.catalog), 7))
