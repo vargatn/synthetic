@@ -48,7 +48,9 @@ Run a simple galsim shear estimator
 
 Run a sextractor on image??? let's hope this works out
 
+Install sextractor as  conda install -c conda-forge astromatic-source-extractor 
 
+test the correct path by using "which sex" command, should point to the conda environment
 
 
 
