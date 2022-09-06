@@ -9,6 +9,8 @@ FLAGS                    Extraction flags
 ELLIPTICITY              1 - B_IMAGE/A_IMAGE
 CLASS_STAR               S/G classifier output
 FWHM_IMAGE               FWHM assuming a gaussian core                             [pixel]
+X2_IMAGE                 Variance along x                                          [pixel**2]
+Y2_IMAGE                 Variance along y                                          [pixel**2]
 
 #ID_PARENT                Parent ID (before deblending)
 #EXT_NUMBER               FITS extension number
