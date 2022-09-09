@@ -11,6 +11,9 @@ CLASS_STAR               S/G classifier output
 FWHM_IMAGE               FWHM assuming a gaussian core                             [pixel]
 X2_IMAGE                 Variance along x                                          [pixel**2]
 Y2_IMAGE                 Variance along y                                          [pixel**2]
+FLUX_RADIUS              Fraction-of-light radii                                   [pixel]
+ISOAREA_IMAGE            Isophotal area above Analysis threshold                   [pixel**2]
+ISOAREAF_IMAGE           Isophotal area (filtered) above Detection threshold       [pixel**2]
 
 #ID_PARENT                Parent ID (before deblending)
 #EXT_NUMBER               FITS extension number
@@ -50,8 +53,6 @@ Y2_IMAGE                 Variance along y                                       
 #BACKGROUND               Background at centroid position                           [count]
 #THRESHOLD                Detection threshold above background                      [count]
 #FLUX_MAX                 Peak flux above background                                [count]
-#ISOAREA_IMAGE            Isophotal area above Analysis threshold                   [pixel**2]
-#ISOAREAF_IMAGE           Isophotal area (filtered) above Detection threshold       [pixel**2]
 #XMIN_IMAGE               Minimum x-coordinate among detected pixels                [pixel]
 #YMIN_IMAGE               Minimum y-coordinate among detected pixels                [pixel]
 #XMAX_IMAGE               Maximum x-coordinate among detected pixels                [pixel]
@@ -195,7 +196,6 @@ Y2_IMAGE                 Variance along y                                       
 #ISO5                     Isophotal area at level 5                                 [pixel**2]
 #ISO6                     Isophotal area at level 6                                 [pixel**2]
 #ISO7                     Isophotal area at level 7                                 [pixel**2]
-#FLAGS                    Extraction flags
 #FLAGS_WEIGHT             Weighted extraction flags
 #FLAGS_WIN                Flags for WINdowed parameters
 #IMAFLAGS_ISO             FLAG-image flags OR'ed over the iso. profile
@@ -221,7 +221,6 @@ Y2_IMAGE                 Variance along y                                       
 #FLUX_GROWTHSTEP          Step for growth-curves                                    [pixel]
 #MAG_GROWTH               Cumulated magnitude growth-curve                          [mag]
 #MAG_GROWTHSTEP           Step for growth-curves                                    [pixel]
-#FLUX_RADIUS              Fraction-of-light radii                                   [pixel]
 #FWHMPSF_IMAGE            FWHM of the local PSF model                               [pixel]
 #FWHMPSF_WORLD            FWHM of the local PSF model (world units)                 [deg]
 #XPSF_IMAGE               X coordinate from PSF-fitting                             [pixel]
