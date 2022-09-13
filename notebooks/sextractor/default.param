@@ -11,9 +11,9 @@ CLASS_STAR               S/G classifier output
 FWHM_IMAGE               FWHM assuming a gaussian core                             [pixel]
 X2_IMAGE                 Variance along x                                          [pixel**2]
 Y2_IMAGE                 Variance along y                                          [pixel**2]
-FLUX_RADIUS              Fraction-of-light radii                                   [pixel]
-ISOAREA_IMAGE            Isophotal area above Analysis threshold                   [pixel**2]
-ISOAREAF_IMAGE           Isophotal area (filtered) above Detection threshold       [pixel**2]
+#FLUX_RADIUS              Fraction-of-light radii                                   [pixel]
+#ISOAREA_IMAGE            Isophotal area above Analysis threshold                   [pixel**2]
+#ISOAREAF_IMAGE           Isophotal area (filtered) above Detection threshold       [pixel**2]
 
 #ID_PARENT                Parent ID (before deblending)
 #EXT_NUMBER               FITS extension number
