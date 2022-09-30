@@ -18,6 +18,41 @@ import multiprocessing as mp
 from ..tools import partition
 
 
+def draw_info(info):
+    bdf_pars = info["bdf_pars"]
+    psf = info["psf"]
+    pixel_scale = info["pixel_scale"]
+    x_cen = info["x_cen"]
+    y_cen = info["y_cen"]
+    offset = info["offset"]
+
+    galmaker = ngmix.gmix.GMixBDF(bdf_pars)
+    gs_profile = galmaker.make_galsim_object()
+    final_gal = galsim.Convolve([psf, gs_profile])
+    stamp_size = final_gal.getGoodImageSize(pixel_scale)
+
+    bound = galsim.BoundsI(x_cen - stamp_size / 2 + 1, x_cen + stamp_size / 2,
+                           y_cen - stamp_size / 2 + 1, y_cen + stamp_size / 2)
+
+    stamp = galsim.ImageF(bound, scale=pixel_scale, )
+    final_gal.drawImage(stamp, offset=offset, )
+
+    return stamp, bound, info["id"]
+
+def call_chunks(infodicts):
+    """Technically this is inside the multiprocessing call, so it should not change any self properties"""
+    stamps = []
+    bounds = []
+    ids = []
+    for info in infodicts:
+        stamp, bound, i = draw_info(info)
+        stamps.append(stamp)
+        bounds.append(bounds)
+        ids.append(i)
+
+    return stamps, bounds, ids
+
+
 class DrawField(object):
     def __init__(self, canvas_size, catalog, band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
         """
@@ -92,27 +127,6 @@ class DrawField(object):
             }
             self.infodicts.append(info)
 
-    @staticmethod
-    def draw_info(info):
-        bdf_pars = info["bdf_pars"]
-        psf = info["psf"]
-        pixel_scale = info["pixel_scale"]
-        x_cen = info["x_cen"]
-        y_cen = info["y_cen"]
-        offset = info["offset"]
-
-        galmaker = ngmix.gmix.GMixBDF(bdf_pars)
-        gs_profile = galmaker.make_galsim_object()
-        final_gal = galsim.Convolve([psf, gs_profile])
-        stamp_size = final_gal.getGoodImageSize(pixel_scale)
-
-        bound = galsim.BoundsI(x_cen - stamp_size / 2 + 1, x_cen + stamp_size / 2,
-                               y_cen - stamp_size / 2 + 1, y_cen + stamp_size / 2)
-
-        stamp = galsim.ImageF(bound, scale=pixel_scale, )
-        final_gal.drawImage(stamp, offset=offset, )
-
-        return stamp, bound, info["id"]
 
     #     def _draw_object(self, i):
     #         """
@@ -146,19 +160,6 @@ class DrawField(object):
 
     #         return stamp
 
-    def call_chunks(self, infodicts):
-        """Technically this is inside the multiprocessing call, so it should not change any self properties"""
-        stamps = []
-        bounds = []
-        ids = []
-        for info in infodicts:
-            stamp, bound, i = self.draw_info(info)
-            stamps.append(stamp)
-            bounds.append(bounds)
-            ids.append(i)
-
-        return stamps, bounds, ids
-
     def multi_render(self, nprocess=1):
         """
         OpenMP style parallelization for xshear tasks
@@ -181,7 +182,7 @@ class DrawField(object):
 
         self.stamps, self.bounds, self.ids = [], [], []
         try:
-            pp = pool.map_async(self.call_chunks, fparchunks)
+            pp = pool.map_async(call_chunks, fparchunks)
             res = pp.get(172800)  # apparently this counters a bug in the exception passing in python.subprocess...
 
             for tmp in res:
