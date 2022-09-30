@@ -68,6 +68,6 @@ class Frame(object):
         self.cens = np.vstack((self.scat['X_IMAGE'], self.scat['Y_IMAGE'])).T
         self.sizes = np.around(self.scat["FWHM_IMAGE"] * 2)
         self.sizes = np.max((np.zeros(len(self.sizes)) + 8, self.sizes), axis=0)
-        self.sc = shear.Shear(self.canvas, self.epsf, self.seg)
+        self.sc = shear.Shear(self.canvas, self.epsf, self.seg, self.pixel_scale)
         self.sc.extract_stamps(self.cens, imasks=self.ids, sizes=self.sizes)
         self.sc.estimate_shear(sky_var=self.noise_std**2)
