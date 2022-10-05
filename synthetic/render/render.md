@@ -19,7 +19,10 @@ Intall the actual galsim package by
 
     conda install -c conda-forge galsim
 
-
+Install meds
+https://github.com/esheldon/meds
+needs also esutil to function 
+conda install -c conda-forge esutil
 
 TODO expand:
 Following this install ngmix and ngmixer
