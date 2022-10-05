@@ -19,6 +19,7 @@ class Frame(object):
         self.config_se = config_se
         self.pixel_scale = pixel_scale
 
+
     def render(self, nprocess=100):
         self.df = render.DrawField(self.canvas_size, self.catalog, band=self.band)
         self.df.prepare()
