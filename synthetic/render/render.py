@@ -52,6 +52,7 @@ def call_chunks(infodicts):
 
     return stamps, bounds, ids
 
+#TODO make more elegant via galsim
 
 class DrawField(object):
     def __init__(self, canvas_size, catalog, band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
@@ -81,7 +82,23 @@ class DrawField(object):
         self.xx = self.catalog['X'] - self.canvas_size / 2
         self.yy = self.catalog['Y'] - self.canvas_size / 2
         self.canvas = galsim.ImageF(self.canvas_size, self.canvas_size, scale=self.pixel_scale)
-        self.canvas.array[:, :] = 0  # this might be redundant
+        #self.canvas.array[:, :] = 0  # this might be redundant
+
+    def make_wcs(self):
+
+        # If you wanted to make a non-trivial WCS system, could set theta to a non-zero number
+        theta = 0.0 * galsim.degrees
+        dudx = np.cos(theta) * self.pixel_scale
+        dudy = -np.sin(theta) * self.pixel_scale
+        dvdx = np.sin(theta) * self.pixel_scale
+        dvdy = np.cos(theta) * self.pixel_scale
+        image_center = self.canvas.true_center
+        affine = galsim.AffineTransform(dudx, dudy, dvdx, dvdy, origin=self.canvas.true_center)
+        sky_center = galsim.CelestialCoord(ra=0 * galsim.degrees, dec=0 * galsim.degrees)
+
+        self.wcs = galsim.TanWCS(affine, sky_center, units=galsim.arcsec)
+        self.canvas.wcs = self.wcs
+
 
     def make_psf(self):
         self.psf = galsim.Gaussian(fwhm=self.psf_fwhm)

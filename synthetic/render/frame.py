@@ -23,6 +23,7 @@ class Frame(object):
     def render(self, nprocess=100):
         self.df = render.DrawField(self.canvas_size, self.catalog, band=self.band)
         self.df.prepare()
+        self.df.make_wcs()
         self.df.make_infodicts()
         self.df.multi_render(nprocess)
         self.df.collate_stamps()
