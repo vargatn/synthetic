@@ -47,8 +47,10 @@ class Frame(object):
         self.file_name = self.name + ".fits"
         self.catalog_name = self.name + "_cat.fits"
         self.seg_name = self.name + "_seg.fits"
+        #self.weight_name = self.name + "_wmap.fits"
 
         cmd = "sex " + self.name + ".fits -c " + self.config_se + " -CATALOG_NAME " + self.catalog_name + " -CHECKIMAGE_NAME " + self.seg_name
+        print(cmd)
         pp = subprocess.Popen(cmd.split(" "), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = pp.communicate()
 
