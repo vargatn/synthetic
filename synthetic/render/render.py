@@ -94,7 +94,7 @@ class DrawField(object):
         dvdy = np.cos(theta) * self.pixel_scale
         image_center = self.canvas.true_center
         affine = galsim.AffineTransform(dudx, dudy, dvdx, dvdy, origin=self.canvas.true_center)
-        sky_center = galsim.CelestialCoord(ra=0 * galsim.degrees, dec=0 * galsim.degrees)
+        sky_center = galsim.CelestialCoord(ra=90. * galsim.degrees, dec=0 * galsim.degrees)
 
         self.wcs = galsim.TanWCS(affine, sky_center, units=galsim.arcsec)
         self.canvas.wcs = self.wcs

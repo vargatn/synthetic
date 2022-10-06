@@ -36,9 +36,11 @@ class Frame(object):
 
     def write(self):
         self.file_name = self.name + ".fits"
-        fio.write(self.file_name, self.canvas.array, clobber=True)
+        self.canvas.write(self.file_name, clobber=True)
+        #fio.write(self.file_name, self.canvas.array, clobber=True)
         self.file_name_psf = self.name + "_epsf.fits"
-        fio.write(self.file_name_psf, self.df.image_epsf.array, clobber=True)
+        #fio.write(self.file_name_psf, self.df.image_epsf.array, clobber=True)
+        self.df.image_epsf.write(self.file_name_psf, clobber=True)
 
     def extract(self):
 
