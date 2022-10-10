@@ -33,7 +33,7 @@ def draw_info(info):
 
     bound = galsim.BoundsI(x_cen - stamp_size / 2 + 1, x_cen + stamp_size / 2,
                            y_cen - stamp_size / 2 + 1, y_cen + stamp_size / 2)
-
+    print(bound)
     stamp = galsim.ImageF(bound, scale=pixel_scale, )
     final_gal.drawImage(stamp, offset=offset, )
 
@@ -143,39 +143,6 @@ class DrawField(object):
                 "offset": self.offsets[i]
             }
             self.infodicts.append(info)
-
-
-    #     def _draw_object(self, i):
-    #         """
-    #         here we make a separate stamp, so that no reference writing is needed
-
-    #         return stamp
-    #         """
-
-    #         galmaker = ngmix.gmix.GMixBDF(self.bdf_pars[i])
-    #         gs_profile = galmaker.make_galsim_object()
-    #         final_gal = galsim.Convolve([self.psf, gs_profile])
-    #         stamp_size = final_gal.getGoodImageSize(self.pixel_scale)
-    #         stamp = galsim.ImageF(stamp_size, stamp_size, scale=self.pixel_scale)
-
-    #         xx = catalog['X'][i] - self.canvas_cen[0]
-    #         yy = catalog['Y'][i] - self.canvas_cen[1]
-    #         x_cen = np.floor(xx)
-    #         y_cen = np.floor(yy)
-
-    #         offset = (xx - x_cen, yy - y_cen)
-
-    #         bound = galsim.BoundsI(x_cen - stamp_size / 2 + 1  , x_cen + stamp_size/ 2,
-    #                            y_cen - stamp_size / 2 + 1,  y_cen + stamp_size / 2)
-    #         #sub_gal_image = canvas[b]
-    #         final_gal.drawImage(stamp, offset=offset, add_to_image=True)
-
-    #         self.stamps.append(stamp)
-    #         self.stamps_bounds.append(bound)
-    #         self.positions.append((xx, yy))
-    #         self.offsets.append(offset)
-
-    #         return stamp
 
     def multi_render(self, nprocess=1):
         """
