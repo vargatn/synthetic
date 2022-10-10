@@ -1,18 +1,77 @@
-NUMBER                   Running object number
-MAG_AUTO                 Kron-like elliptical aperture magnitude                   [mag]
-MAGERR_AUTO              RMS error for AUTO magnitude                              [mag]
-FLUX_AUTO                Flux within a Kron-like elliptical aperture               [count]
-FLUXERR_AUTO             RMS error for AUTO flux                                   [count]
-X_IMAGE                  Object position along x                                   [pixel]
-Y_IMAGE                  Object position along y                                   [pixel]
-FLAGS                    Extraction flags
-ELLIPTICITY              1 - B_IMAGE/A_IMAGE
-CLASS_STAR               S/G classifier output
-FWHM_IMAGE               FWHM assuming a gaussian core                             [pixel]
-X2_IMAGE                 Variance along x                                          [pixel**2]
-Y2_IMAGE                 Variance along y                                          [pixel**2]
-ALPHA_J2000              Right ascension of barycenter (J2000)                     [deg]
-DELTA_J2000              Declination of barycenter (J2000)                         [deg]
+ALPHAWIN_J2000
+DELTAWIN_J2000
+X_IMAGE
+Y_IMAGE
+NUMBER
+MAG_ISO
+MAGERR_ISO
+MAG_ISOCOR
+MAGERR_ISOCOR
+MAG_APER
+MAGERR_APER
+MAG_AUTO
+MAGERR_AUTO
+MAG_BEST
+MAGERR_BEST
+FLUX_AUTO
+FLUXERR_AUTO
+FLUX_BEST
+FLUXERR_BEST
+FLUX_ISO
+FLUXERR_ISO
+KRON_RADIUS
+BACKGROUND
+THRESHOLD
+FLUX_MAX
+ISOAREA_IMAGE
+X2_IMAGE
+Y2_IMAGE
+XY_IMAGE
+YMIN_IMAGE
+YMAX_IMAGE
+XMIN_IMAGE
+XMAX_IMAGE
+A_IMAGE
+B_IMAGE
+THETA_IMAGE
+MU_THRESHOLD
+MU_MAX
+ISOAREA_WORLD
+X_WORLD
+Y_WORLD
+A_WORLD
+B_WORLD
+THETA_WORLD
+FLAGS
+FWHM_IMAGE
+FWHM_WORLD
+ELONGATION
+CLASS_STAR
+FLUX_RADIUS(1)
+FLUX_APER(1)
+ELLIPTICITY
+VIGNET(35,35)
+SNR_WIN
+
+
+#NUMBER                   Running object number
+#MAG_AUTO                 Kron-like elliptical aperture magnitude                   [mag]
+#MAGERR_AUTO              RMS error for AUTO magnitude                              [mag]
+#FLUX_AUTO                Flux within a Kron-like elliptical aperture               [count]
+#FLUXERR_AUTO             RMS error for AUTO flux                                   [count]
+#X_IMAGE                  Object position along x                                   [pixel]
+#Y_IMAGE                  Object position along y                                   [pixel]
+#FLAGS                    Extraction flags
+#ELLIPTICITY              1 - B_IMAGE/A_IMAGE
+#CLASS_STAR               S/G classifier output
+#FWHM_IMAGE               FWHM assuming a gaussian core                             [pixel]
+#X2_IMAGE                 Variance along x                                          [pixel**2]
+#Y2_IMAGE                 Variance along y                                          [pixel**2]
+#ALPHA_J2000              Right ascension of barycenter (J2000)                     [deg]
+#DELTA_J2000              Declination of barycenter (J2000)                         [deg]
+
+
+
 #FLUX_RADIUS              Fraction-of-light radii                                   [pixel]
 #ISOAREA_IMAGE            Isophotal area above Analysis threshold                   [pixel**2]
 #ISOAREAF_IMAGE           Isophotal area (filtered) above Detection threshold       [pixel**2]
