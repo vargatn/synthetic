@@ -19,7 +19,7 @@
   <PARAM name="Soft_Ref" datatype="char" arraysize="*" ucd="meta.bib.bibcode;meta.software" value="2006ASPC..351..112B"/>
   <PARAM name="NThreads" datatype="int" ucd="meta.number;meta.software" value="160"/>
   <PARAM name="Date" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="2022-10-10"/>
-  <PARAM name="Time" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="14:55:39"/>
+  <PARAM name="Time" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="17:59:09"/>
   <PARAM name="Duration" datatype="float" ucd="time.event;meta.software" value="0" unit="s"/>
   <PARAM name="User" datatype="char" arraysize="*" ucd="meta.curation" value="vargatn"/>
   <PARAM name="Host" datatype="char" arraysize="*" ucd="meta.curation" value="seitz2"/>
@@ -104,29 +104,29 @@
    <FIELD name="PixelScale_WCS_Max" unit="arcsec" datatype="float" ucd="instr.scale;stat.max;instr.pixel"/>
    <DATA><TABLEDATA>
     <TR>
-     <TD>canvas_000_cat.ldac</TD><TD>no ident</TD><TD>1</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
+     <TD>star_canvas_cat.ldac</TD><TD>no ident</TD><TD>1</TD>
+     <TD>400</TD><TD>400</TD><TD>400</TD><TD>400</TD>
+     <TD>398</TD><TD>398</TD><TD>398</TD><TD>398</TD>
+     <TD>3.54207</TD><TD>3.54207</TD><TD>3.54207</TD>
+     <TD>0.753631</TD><TD>0.753631</TD><TD>0.753631</TD>
+     <TD>1.07664</TD><TD>1.07664</TD><TD>1.07664</TD>
+     <TD>3.34905</TD><TD>3.35087</TD><TD>3.35186</TD>
+     <TD>0.884137</TD><TD>0.884599</TD><TD>0.884889</TD>
+     <TD>1.06716e-07</TD><TD>0.000234764</TD><TD>0.000466839</TD>
+     <TD>-0.000409654</TD><TD>-0.000186654</TD><TD>0.000466831</TD>
+     <TD>-0.000228052</TD><TD>-0.000142388</TD><TD>0.000236223</TD>
+     <TD>9.95377</TD><TD>9.99838</TD><TD>9.99978</TD>
+     <TD>0.0161833</TD><TD>0.0162837</TD><TD>0.0164184</TD>
+     <TD>3.27884</TD><TD>3.28054</TD><TD>3.2816</TD>
+     <TD>0.865601</TD><TD>0.866075</TD><TD>0.866342</TD>
+     <TD>1.09004e-06</TD><TD>0.00029554</TD><TD>0.000454947</TD>
+     <TD>-0.000419192</TD><TD>-0.000295152</TD><TD>0.00044234</TD>
+     <TD>-0.000253863</TD><TD>1.51389e-05</TD><TD>0.000149217</TD>
+     <TD>9.98804</TD><TD>9.99927</TD><TD>9.99992</TD>
+     <TD>0.015044</TD><TD>0.0151386</TD><TD>0.0152391</TD>
+     <TD>0.408057</TD><TD>0.408859</TD><TD>0.409323</TD>
+     <TD>27.2315</TD><TD>27.2767</TD><TD>27.2799</TD>
+     <TD>0.263996</TD><TD>0.263998</TD><TD>0.264</TD>
     </TR>
    </TABLEDATA></DATA>
   </TABLE>
@@ -206,28 +206,28 @@
    <DATA><TABLEDATA>
     <TR>
      <TD>1</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
-     <TD>0</TD><TD>0</TD><TD>0</TD>
+     <TD>400</TD><TD>400</TD><TD>400</TD><TD>400</TD>
+     <TD>398</TD><TD>398</TD><TD>398</TD><TD>398</TD>
+     <TD>3.54207</TD><TD>3.54207</TD><TD>3.54207</TD>
+     <TD>0.753631</TD><TD>0.753631</TD><TD>0.753631</TD>
+     <TD>1.07664</TD><TD>1.07664</TD><TD>1.07664</TD>
+     <TD>3.34905</TD><TD>3.35087</TD><TD>3.35186</TD>
+     <TD>0.884137</TD><TD>0.884599</TD><TD>0.884889</TD>
+     <TD>1.06716e-07</TD><TD>0.000234764</TD><TD>0.000466839</TD>
+     <TD>-0.000409654</TD><TD>-0.000186654</TD><TD>0.000466831</TD>
+     <TD>-0.000228052</TD><TD>-0.000142388</TD><TD>0.000236223</TD>
+     <TD>9.95377</TD><TD>9.99838</TD><TD>9.99978</TD>
+     <TD>0.0161833</TD><TD>0.0162837</TD><TD>0.0164184</TD>
+     <TD>3.27884</TD><TD>3.28054</TD><TD>3.2816</TD>
+     <TD>0.865601</TD><TD>0.866075</TD><TD>0.866342</TD>
+     <TD>1.09004e-06</TD><TD>0.00029554</TD><TD>0.000454947</TD>
+     <TD>-0.000419192</TD><TD>-0.000295152</TD><TD>0.00044234</TD>
+     <TD>-0.000253863</TD><TD>1.51389e-05</TD><TD>0.000149217</TD>
+     <TD>9.98804</TD><TD>9.99927</TD><TD>9.99992</TD>
+     <TD>0.015044</TD><TD>0.0151386</TD><TD>0.0152391</TD>
+     <TD>0.408057</TD><TD>0.408859</TD><TD>0.409323</TD>
+     <TD>27.2315</TD><TD>27.2767</TD><TD>27.2799</TD>
+     <TD>0.263996</TD><TD>0.263998</TD><TD>0.264</TD>
     </TR>
    </TABLEDATA></DATA>
   </TABLE>
@@ -237,14 +237,12 @@
    <FIELD name="Time" datatype="char" arraysize="*" ucd="meta;time.event.end"/>
    <FIELD name="Msg" datatype="char" arraysize="*" ucd="meta"/>
    <DATA><TABLEDATA>
-    <TR><TD>2022-10-10</TD><TD>14:55:39</TD><TD>This executable has been compiled using a version of the ATLAS library without sPerformance will be degraded.</TD></TR>
-    <TR><TD>2022-10-10</TD><TD>14:55:39</TD><TD>No source with appropriate FWHM found!!</TD></TR>
-    <TR><TD>2022-10-10</TD><TD>14:55:39</TD><TD>No source with appropriate FWHM found!!</TD></TR>
+    <TR><TD>2022-10-10</TD><TD>17:59:09</TD><TD>This executable has been compiled using a version of the ATLAS library without sPerformance will be degraded.</TD></TR>
    </TABLEDATA></DATA>
   </TABLE>
   <RESOURCE ID="Config" name="Config">
    <DESCRIPTION>PSFEx configuration</DESCRIPTION>
-   <PARAM name="Command_Line" datatype="char" arraysize="*" ucd="obs.param" value="psfex canvas_000_cat.ldac -c psfex.config"/>
+   <PARAM name="Command_Line" datatype="char" arraysize="*" ucd="obs.param" value="psfex star_canvas_cat.ldac -c psfex.config"/>
    <PARAM name="Prefs_Name" datatype="char" arraysize="*" ucd="obs.param;meta.file" value="psfex.config"/>
    <PARAM name="Basis_Type" datatype="char" arraysize="*" ucd="meta.code" value="PIXEL_AUTO"/>
    <PARAM name="Basis_Number" datatype="int" ucd="meta.number" value="20"/>
@@ -268,7 +266,7 @@
    <PARAM name="Stability_Type" datatype="char" arraysize="*" ucd="meta.code" value="EXPOSURE"/>
    <PARAM name="Sample_AutoSelect" datatype="boolean" ucd="meta.code" value="T"/>
    <PARAM name="SampleVar_Type" datatype="char" arraysize="*" ucd="meta.code" value="SEEING"/>
-   <PARAM name="Sample_FWHMRange" unit="pix" datatype="double" arraysize="2" ucd="phys.size.diameter;instr.det.psf" value="1.6 2.5"/>
+   <PARAM name="Sample_FWHMRange" unit="pix" datatype="double" arraysize="2" ucd="phys.size.diameter;instr.det.psf" value="1.6 5"/>
    <PARAM name="Sample_Variability" datatype="double" ucd="instr.det.psf;arith.ratio" value="0.2"/>
    <PARAM name="Sample_MinSN" datatype="double" ucd="stat.snr;stat.min" value="8"/>
    <PARAM name="Sample_MaxEllip" datatype="double" ucd="src.ellipticity;stat.max" value="0.3"/>

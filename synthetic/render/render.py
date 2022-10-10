@@ -33,7 +33,7 @@ def draw_info(info):
 
     bound = galsim.BoundsI(x_cen - stamp_size / 2 + 1, x_cen + stamp_size / 2,
                            y_cen - stamp_size / 2 + 1, y_cen + stamp_size / 2)
-    print(bound)
+
     stamp = galsim.ImageF(bound, scale=pixel_scale, )
     final_gal.drawImage(stamp, offset=offset, )
 
