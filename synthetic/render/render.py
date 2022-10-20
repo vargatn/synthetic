@@ -185,7 +185,8 @@ class DrawField(object):
     def collate_stamps(self):
         for i in np.arange(len(self.catalog)):
             stamp = self.stamps[i]
-            self.canvas[stamp.bounds] += stamp
+            bb = stamp.bounds & self.canvas.bounds
+            self.canvas[bb] += stamp[bb]
 
     def add_icl(self, arr):
         self.canvas += arr
