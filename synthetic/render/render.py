@@ -60,7 +60,6 @@ class DrawField(object):
         This assumes a gaussian PSF
         """
         self.canvas_size = canvas_size
-        self.canvas_cen = np.array((canvas_size / 2., canvas_size / 2.))
         self.catalog = catalog
         self.band = band
         self.pixel_scale = pixel_scale
@@ -79,8 +78,8 @@ class DrawField(object):
         self.collate_stamps()
 
     def make_canvas(self):
-        self.xx = self.catalog['X'] - self.canvas_size / 2
-        self.yy = self.catalog['Y'] - self.canvas_size / 2
+        self.xx = self.catalog['X']
+        self.yy = self.catalog['Y']
         self.canvas = galsim.ImageF(self.canvas_size, self.canvas_size, scale=self.pixel_scale)
         #self.canvas.array[:, :] = 0  # this might be redundant
 
@@ -94,7 +93,7 @@ class DrawField(object):
         dvdy = np.cos(theta) * self.pixel_scale
         image_center = self.canvas.true_center
         affine = galsim.AffineTransform(dudx, dudy, dvdx, dvdy, origin=self.canvas.true_center)
-        sky_center = galsim.CelestialCoord(ra=90. * galsim.degrees, dec=0 * galsim.degrees)
+        sky_center = galsim.CelestialCoord(ra=1. * galsim.degrees, dec=1* galsim.degrees)
 
         self.wcs = galsim.TanWCS(affine, sky_center, units=galsim.arcsec)
         self.canvas.wcs = self.wcs
@@ -115,8 +114,8 @@ class DrawField(object):
 
     def make_positions(self):
 
-        self.xx = self.catalog['X'][:] - self.canvas_cen[0]
-        self.yy = self.catalog['Y'][:] - self.canvas_cen[1]
+        self.xx = self.catalog['X'][:]# - self.canvas.true_center.x
+        self.yy = self.catalog['Y'][:]# - self.canvas.true_center.y
 
         self.x_cen = np.floor(self.xx)
         self.y_cen = np.floor(self.yy)
