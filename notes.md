@@ -1,0 +1,1 @@
+for the newest conda version run 'conda init bash' to recover the bash command prompt
