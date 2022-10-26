@@ -8,6 +8,14 @@ from . import shear
 from . import render
 
 
+class MockPSF(object):
+    def __init__(self, psf_image):
+        """This is a hacked PSFex solution, giving directly the psf image"""
+        self.psf_image = psf_image
+
+    def get_rec(self, *args, **kwargs):
+        return self.psf_image
+
 
 class Frame(object):
     def __init__(self, catalog, name="canvas", canvas_size=5000, band="i", noise_std=8.36, config_se="config.sex", pixel_scale=0.264):
