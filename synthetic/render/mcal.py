@@ -5,10 +5,7 @@ import os
 import time
 from astropy.table import Table, vstack, hstack
 
-
-
-
-
+import multiprocessing as mp
 
 
 
@@ -293,6 +290,38 @@ def call_chunks(infodicts):
         run_mcal(info)
 
 
+
+def multi_mcal(infodicts, nprocess=1):
+    """
+    OpenMP style parallelization
+    Separates tasks into chunks, and passes each chunk for an independent process
+    for serial evaulation via :py:func:`call_chunks`
+    Parameters
+    ----------
+    infodict : dict
+        A single list element returned from :py:func:`create_infodict`
+    nprocess : int
+        Number of processes (cores) to use. Maximum number is always set by ``len(infodicts)``
+    """
+    # at most as many processes can be used as there are independent tasks...
+    if nprocess > len(infodicts):
+        nprocess = len(infodicts)
+
+    print('starting xshear calculations in ' + str(nprocess) + ' processes')
+    fparchunks = partition(infodicts, nprocess)
+    pool = mp.Pool(processes=nprocess)
+
+    try:
+        pp = pool.map_async(call_chunks, fparchunks)
+        res = pp.get()  # apparently this counters a bug in the exception passing in python.subprocess...
+
+    except KeyboardInterrupt:
+        print("Caught KeyboardInterrupt, terminating workers")
+        pool.terminate()
+        pool.join()
+    else:
+        pool.close()
+        pool.join()
 
 
 def partition(lst, n):
