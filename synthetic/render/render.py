@@ -166,7 +166,7 @@ class DrawField(object):
         self.stamps, self.bounds, self.ids = [], [], []
         try:
             pp = pool.map_async(call_chunks, fparchunks)
-            res = pp.get(172800)  # apparently this counters a bug in the exception passing in python.subprocess...
+            res = pp.get()  # apparently this counters a bug in the exception passing in python.subprocess...
 
             for tmp in res:
                 self.stamps += tmp[0]

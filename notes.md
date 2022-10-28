@@ -12,7 +12,7 @@ then activate the environment by typing
 
 Packages which should be installed
 
-    conda install -c conda-forge numpy scipy numba pandas matplotlib scikit-learn astropy  fitsio esutil
+    conda install -c conda-forge numpy scipy numba pandas jupyter matplotlib scikit-learn astropy  fitsio esutil
 
 note the first import of matplotlib will take a longer time for compiling
 Now install galsim
