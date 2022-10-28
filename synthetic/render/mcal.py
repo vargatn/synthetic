@@ -246,7 +246,7 @@ def run_mcal(info):
     start = info["start"]
     end = info["end"]
     clobber = True
-    vb = True  # args.vb # if True, prints out values of R11/R22 for every galaxy
+    vb = False  # args.vb # if True, prints out values of R11/R22 for every galaxy
 
     if outdir is not None:
         outfile = os.path.join(outdir, outfile)
