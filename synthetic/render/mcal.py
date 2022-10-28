@@ -240,3 +240,97 @@ class MetacalFitter(object):
         mcal_tab = self.mcal_dict2tab(mcal_res, obj_info)
 
         return mcal_tab
+
+
+def run_mcal(info):
+    medsfile = info["medsfile"]
+    outfile = info["outfile"]
+    outdir = info["outdir"]
+    start = info["start"]
+    end = info["end"]
+    clobber = True
+    vb = True  # args.vb # if True, prints out values of R11/R22 for every galaxy
+
+    if outdir is not None:
+        outfile = os.path.join(outdir, outfile)
+
+    fitter = MetacalFitter(medsfile)
+
+    if start is None:
+        start = 0
+    if end is None:
+        end = fitter.Nobjs
+
+    # Can set mcal parameters here if you want something beyond the default
+    # in fit_obj()
+    pars = None
+
+    Tstart = time.time()
+
+    mcal_tab = []
+    for iobj in range(start, end):
+        mcal_tab.append(
+            fitter.fit_obj(iobj, pars=pars, vb=vb)
+        )
+    mcal_tab = vstack(mcal_tab)
+
+    Tend = time.time()
+
+    T = Tend - Tstart
+    print(f'Total fitting and stacking time: {T} seconds')
+
+    if vb is True:
+        print(f'Writing out mcal results to {outfile}...')
+    mcal_tab.write(outfile, overwrite=clobber)
+
+    if vb is True:
+        print('Done!')
+
+
+def call_chunks(infodicts):
+    """Technically this is inside the multiprocessing call, so it should not change any self properties"""
+    for info in infodicts:
+        run_mcal(info)
+
+
+
+
+def partition(lst, n):
+    """
+    Divides a list into N roughly equal chunks
+    Examples
+    --------
+    Define some test list, and look at the obtained chunks with different :code:`n` values::
+        >>> lst = np.arange(20)
+        >>> lst
+        array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+        17, 18, 19])
+        >>> partition(lst, n=5)
+        [array([0, 1, 2, 3]),
+         array([4, 5, 6, 7]),
+         array([ 8,  9, 10, 11]),
+         array([12, 13, 14, 15]),
+         array([16, 17, 18, 19])]
+        >>> partition(lst, n=6)
+        [array([0, 1, 2]),
+         array([3, 4, 5, 6]),
+         array([7, 8, 9]),
+         array([10, 11, 12]),
+         array([13, 14, 15, 16]),
+         array([17, 18, 19])]
+    As we can see, even when :code:`n` is not a divisor of :code:`len(lst)`, it returns
+    roughly balanced chunks
+    Parameters
+    ----------
+    lst : list
+        list to split up
+    n : int
+        chunks to make
+    Returns
+    -------
+    list of lists
+        list of chunks
+    """
+    division = len(lst) / float(n)
+    return [lst[int(round(division * i)): int(round(division * (i + 1)))]
+            for i in range(n) ]
