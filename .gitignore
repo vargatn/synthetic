@@ -1,4 +1,10 @@
 .idea
+**/*fits
+**/*fit
+**/*ldac
+**/*fz
+**/*zip
+**/*gz
 */*/*fits
 */*/*fit*
 */*/*ldac*
