@@ -1,6 +1,7 @@
 # synthetic
 Synthetic galaxy cluster images and catalogs for optical sky surveys
 
+**Please see the [DESIGN doc](DESIGN.md) file for the detailed vision** 
 
 # Project outline
 
