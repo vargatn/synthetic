@@ -9,3 +9,8 @@ This will enable a smoother start for grad student, and swifter
 onboarding for more experienced researchers
 
 # Outline
+
+The main stages of this work are
+
+1) Training a model to generate synthetic galaxy cluster catalogs
+2) Ine
