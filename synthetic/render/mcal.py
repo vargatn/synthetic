@@ -4,9 +4,42 @@ import numpy as np
 import os
 import time
 from astropy.table import Table, vstack, hstack
-
+import fitsio as fio
 import multiprocessing as mp
 
+
+def infomaker(maxnum, medsfile, outfile_root, nchunk=100):
+    lst = partition(np.arange(maxnum), n=nchunk)
+
+    infodicts = []
+    for i, tmp in enumerate(lst):
+        info = {
+            "medsfile": medsfile,
+            "outfile": outfile_root + "_{:03d}.fits".format(i),
+            "outdir": None,
+            "start": tmp.min(),
+            "end": tmp.max() + 1,  # due to how lists work, we need to include the one higher value here
+        }
+        infodicts.append(info)
+    return infodicts
+
+
+def collater(infodicts, ):
+    tab = []
+    names = []
+    for i, info in enumerate(infodicts):
+
+        fname = info['outfile']
+        tmp = fio.read(fname)
+
+        if i == 0:
+            for i, name in enumerate(tmp.dtype.names):
+                if 'err' not in name:
+                    names.append(name)
+
+        tab.append(tmp[names])
+
+    return np.hstack(tab)
 
 
 class MetacalFitter(object):
