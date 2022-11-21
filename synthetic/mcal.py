@@ -1,3 +1,8 @@
+from numba.core.errors import NumbaExperimentalFeatureWarning
+import warnings
+
+warnings.simplefilter('ignore', category=NumbaExperimentalFeatureWarning)
+
 import ngmix
 from ngmix.medsreaders import NGMixMEDS
 import numpy as np
