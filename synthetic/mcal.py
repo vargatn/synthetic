@@ -1,3 +1,8 @@
+"""
+The non standard dependencies are ngmix (numba)
+"""
+
+
 from numba.core.errors import NumbaExperimentalFeatureWarning
 import warnings
 
