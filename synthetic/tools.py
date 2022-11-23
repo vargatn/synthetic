@@ -199,3 +199,22 @@ def partition(lst, n):
     division = len(lst) / float(n)
     return [lst[int(round(division * i)): int(round(division * (i + 1)))]
             for i in range(n) ]
+
+
+def save(fname, tables):
+    """The key is data/tab{i}"""
+    for i, csample in enumerate(tables):
+        key = "data/tab" + str(i)
+        #         print(key)
+        csample.to_hdf(fname, key)
+
+
+def load(fname, imax=4):
+    """The key is data/tab{i}"""
+    tables = []
+    for i in np.arange(imax):
+        key = "data/tab" + str(i)
+        #         print(key)
+        tmp = pd.read_hdf(fname, key)
+        tables.append(tmp)
+    return tables
