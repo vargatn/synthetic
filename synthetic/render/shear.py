@@ -1,6 +1,21 @@
 import galsim
 import numpy as np
 
+import astropy.constants as constants
+import astropy.units as u
+
+
+def sigma_crit_inv(zclust, z, cosmo):
+    prefac = (4. * np.pi * constants.G / (constants.c ** 2.)).to(u.pc / u.Msun)
+
+    Ds = cosmo.angular_diameter_distance(z).to(u.pc)
+    Dl = cosmo.angular_diameter_distance(zclust).to(u.pc)
+    Dls = cosmo.angular_diameter_distance_z1z2(zclust, z).to(u.pc)
+
+    val = prefac * Dl * Dls / Ds
+    resval = np.max((0., val.value))
+    return resval
+
 
 class Shear(object):
     def __init__(self, canvas, image_epsf, maskmap, pixel_scale):
