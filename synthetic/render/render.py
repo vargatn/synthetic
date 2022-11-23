@@ -55,7 +55,7 @@ def call_chunks(infodicts):
 #TODO make more elegant via galsim
 
 class DrawField(object):
-    def __init__(self, canvas_size, catalog, band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
+    def __init__(self, canvas_size, catalog, center=(0., 0.), band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
         """
         This assumes a gaussian PSF
         """
@@ -65,6 +65,7 @@ class DrawField(object):
         self.pixel_scale = pixel_scale
         self.sky_level = sky_level
         self.psf_fwhm = psf_fwhm
+        self.center = center
 
         self.stamps = []
         self.stamps_bounds = []
@@ -93,7 +94,7 @@ class DrawField(object):
         dvdy = np.cos(theta) * self.pixel_scale
         image_center = self.canvas.true_center
         affine = galsim.AffineTransform(dudx, dudy, dvdx, dvdy, origin=self.canvas.true_center)
-        sky_center = galsim.CelestialCoord(ra=1. * galsim.degrees, dec=1* galsim.degrees)
+        sky_center = galsim.CelestialCoord(ra=self.center[0] * galsim.degrees, dec=self.center[1]* galsim.degrees)
 
         self.wcs = galsim.TanWCS(affine, sky_center, units=galsim.arcsec)
         self.canvas.wcs = self.wcs
