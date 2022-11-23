@@ -7,6 +7,7 @@ import galsim
 from . import shear
 from . import render
 
+# TODO automate sextractor config file path
 
 class MockPSF(object):
     def __init__(self, psf_image):
