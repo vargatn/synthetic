@@ -30,7 +30,7 @@ except:
 
 import multiprocessing as mp
 
-from .utils import partition
+from ..tools import partition
 
 
 def get_angle(num, rng):

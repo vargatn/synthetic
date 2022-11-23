@@ -21,4 +21,4 @@ def result_reader(samples, scores, m_factor=20, nratio=1., seed=None):
     inds_clust = ((p_rands_ref / nratio / p_proposal) < uniform) * (uniform < (p_clust_ref  / p_proposal))
     inds_2d = ((uniform < (p_clust_ref  / p_proposal)))
 
-    return inds_field, inds_clust, 
+    return inds_field, inds_clust,
