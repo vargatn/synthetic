@@ -218,3 +218,7 @@ def load(fname, imax=4):
         tmp = pd.read_hdf(fname, key)
         tables.append(tmp)
     return tables
+
+def toflux(mag):
+    flux = 10**((mag - 30)/-2.5)
+    return flux
