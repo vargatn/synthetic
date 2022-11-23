@@ -18,7 +18,7 @@ class MockPSF(object):
 
 
 class Frame(object):
-    def __init__(self, catalog, name="canvas", canvas_size=5000, band="i", noise_std=8.36, config_se="config.sex", pixel_scale=0.264):
+    def __init__(self, catalog, name="canvas", canvas_size=5000, center=(0., 0.), band="i", noise_std=8.36, config_se="config.sex", pixel_scale=0.264):
         self.catalog = catalog
         self.canvas_size = canvas_size
         self.band = band
@@ -26,10 +26,11 @@ class Frame(object):
         self.name = name
         self.config_se = config_se
         self.pixel_scale = pixel_scale
+        self.center = center
 
 
     def render(self, nprocess=100):
-        self.df = render.DrawField(self.canvas_size, self.catalog, band=self.band)
+        self.df = render.DrawField(self.canvas_size, self.catalog, center=self.center, band=self.band)
         self.df.prepare()
         self.df.make_wcs()
         self.df.make_infodicts()

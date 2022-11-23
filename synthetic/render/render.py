@@ -120,7 +120,7 @@ class DrawField(object):
 
         self.x_cen = np.floor(self.xx)
         self.y_cen = np.floor(self.yy)
-
+        
         self.offsets = np.vstack((self.xx - self.x_cen, self.yy - self.y_cen)).T
 
     def prepare(self):
