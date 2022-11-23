@@ -17,8 +17,8 @@ import copy
 import multiprocessing as mp
 import pickle
 
-from .utils import to_pandas, radial_bins, partition
-from .paths import setup_logger, logfile_info, config
+from ..tools import to_pandas, radial_bins, partition
+#from .paths import setup_logger, logfile_info, config
 
 
 BADVAL = -9999.
