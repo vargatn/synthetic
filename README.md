@@ -1,33 +1,30 @@
-# synthetic
-Synthetic galaxy cluster images and catalogs for optical sky surveys
+# SYNTHETIC
 
-**Please see the [DESIGN doc](DESIGN.md) file for the detailed vision** 
+This package provides tools for generating synthetic images about optical galaxy cluster observations 
+aimed at the Dark Energy Science Consorcium (DESC) of the Legace Survey of Space and Time (LSST).
+Synthetic data is artificially generated data that is used to test and evaluate algorithms, models, and software pipelines.
+In the domain of galaxy cluster observations our aim is to measure the weak gravitational lensing signal induced by
+the gravitational potential wells of galaxy clusters, which enables us to estimate their masses. 
+Validating and calibrating the the weak lensing measurement is revealed to be an involved task, and the aim of this package is to 
+provide the synthetic data which is then used for testing, benchmarking statistical estimators and software pipelines.
 
-Look at illustration at [link](https://vargatn.github.io/synthetic/)
+Some illustrations of earlier publication in our team is provided at the following [link](https://vargatn.github.io/synthetic/)
 
-# Project outline
+Please see the [DESIGN doc](DESIGN.md) file for the detailed vision 
 
-**Phase A** Implement custom galsim backend
+## Features
 
-in progress,
-
-Tasks
-  * reproduce DES pipeline, 
-  * LSST PSF and instrument simulator, check what is this really
-
-
-
-**Phase B** Define settings pipeline for DES / Rubin / Euclid - style runs in a comprehendable way
-
-**Phase C** Keep a design doc
-
-**Phase D** Submit a sequential set of iterations of clusters
-
-**Phase C** Replace galsim galaxies with cGAN-ned galaxies from David
-
-**Phase D** lightweight render for web wiever "infinite sky"
+## Installation
 
 
-# TODO
+## Getting Started
 
-add a notebook 3 style pre made example for generation
+## Documentation
+
+## Contributing
+
+
+## License
+
+
+
