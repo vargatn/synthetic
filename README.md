@@ -26,3 +26,8 @@ Tasks
 **Phase C** Replace galsim galaxies with cGAN-ned galaxies from David
 
 **Phase D** lightweight render for web wiever "infinite sky"
+
+
+# TODO
+
+add a notebook 3 style pre made example for generation
