@@ -26,12 +26,53 @@ Please see the [DESIGN doc](DESIGN.md) file for the detailed vision
 
 ## Features
 
+There are three main components of this package:
+
+**Part 1: generative galaxy cluster line of sight model**
+
+This step is based on Varga et al 2021, and includes
+
+* training the generative model _(heads up: high computation intensity)_ 
+* drawing random realizations of a galaxy cluster as a member galaxy catalog
+
+
+**Part 2: Image rendering**
+* render synthetic galaxy cluster catalogs into synthetic images
+
+**Part 3: image processing and shear estimation**
+* find sources in the synthetic images
+* prepare the image data and source catalog for further processing
+* use the metacalibration algorithm to estimate the shear and response terms of the source catalog
+
 ## Installation
+
+At the moment this package is installed from github, we are actively working to bring this to conda and pip
+
+    git clone git@github.com:vargatn/synthetic.git
+
+then install via setup.py
+
+    python setup.pu install
+
+**Dependencies**
+To make the end-to-end data generation, rendering and metacalibration steps work there is a fair bit of external packages which need to work together
+
+This can be quite complex to install together, so we designed the package in a compartmentalized way,
+so that the different stages can be used with some dependencies missing
+
+It is our aim to provide a working ipython kernel on the DESC machines, and locally at the USM, where the package is validated to run.
+
+Key dependencies and versions are listed below:
+
+**TBA**
 
 
 ## Getting Started
+For a first time user, please start with the tutorial notebook series in the [tutorial](tutorial) folder.
 
 ## Documentation
+
+**TBA** sphinx autodoc from docstrings 
 
 ## Contributing
 
