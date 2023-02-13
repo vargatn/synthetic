@@ -1,6 +1,8 @@
-![synthetic galaxy cluster rendered from synthetic catalog](./illustration.png)
 
-# SYNTHETIC
+# SYNTHETIC - synthetic galaxy clusters and images, end to end.
+
+![synthetic galaxy cluster rendered from synthetic catalog](./doc/illustration.png)
+
 
 1) Generate synthetic images of optical galaxy cluster observations.
 2) Tools for reducing and processing synthetic images with metacalibration to obtain the input shear field.
