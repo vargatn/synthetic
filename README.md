@@ -1,3 +1,5 @@
+![synthetic galaxy cluster rendered from synthetic catalog](./illustration.png)
+
 # SYNTHETIC
 
 1) Generate synthetic images of optical galaxy cluster observations.
