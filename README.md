@@ -55,7 +55,7 @@ At the moment this package is installed from github, we are actively working to 
 
 then install via setup.py
 
-    python setup.pu install
+    python setup.py install
 
 **Dependencies**
 To make the end-to-end data generation, rendering and metacalibration steps work there is a fair bit of external packages which need to work together
