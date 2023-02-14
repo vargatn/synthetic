@@ -1,7 +1,7 @@
 
 # SYNTHETIC - synthetic galaxy clusters and images, end to end.
 
-![synthetic galaxy cluster rendered from synthetic catalog](./doc/illustration.png)
+![synthetic galaxy cluster rendered from synthetic catalog](./doc/banner.png)
 
 
 1) Generate synthetic images of optical galaxy cluster observations.
