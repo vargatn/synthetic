@@ -12,5 +12,10 @@
 */*/*.p
 */*/*.h5
 *egg*
+tutorial/data
+tutorial/*png
+tutorial/*jpg
+tutorial/*fits
+tutorial/*fit
 
 
