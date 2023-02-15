@@ -56,6 +56,16 @@ If this runs without errors, then you are set to go!
 :red_circle: **B3**  [Add intra-cluster light (ICL) to images](B3_add_icl.ipynb)
 * status:  TBA
 
-## Processing with metacalibration
+## Part C: Processing with metacalibration
 
+:red_circle: **C1**  [Running sextractor]()
+* status:  TBA
 
+:red_circle: **C2**  [create MEDS]()
+* status:  TBA
+
+:red_circle: **C3**  [metacalibration on a grid]()
+* status:  TBA
+
+:red_circle: **C4**  [metacalibration of cluster injection]()
+* status:  TBA

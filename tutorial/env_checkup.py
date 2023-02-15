@@ -53,6 +53,8 @@ def test_render():
 
     import astropy.cosmology as cosmology
     import astropy.units as u
+    import images
+
 
     import ngmix
     print('\tngmix version:', ngmix.__version__)
