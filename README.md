@@ -73,6 +73,20 @@ Key dependencies and versions are listed below:
 ## Getting Started
 For a first time user, please start with the tutorial notebook series in the [tutorial](./tutorial/TUTORIAL.md) folder.
 
+Right now the best way to run this package is via a pre set conda environment. 
+
+At the moment this is available in the LMU USM server, and is planned to be added for the NERSC LSST DESC server.
+
+On the USM you should use the following command to activate the environment 
+    
+    conda activate /home/moon/vargatn/anaconda3/envs/galsim
+
+and use the [checkup script](./tutorial/env_checkup.py)
+
+    python env_checkup.py
+
+If this runs without errors, then you are set to go!
+
 ## Documentation
 
 **TBA** sphinx autodoc from docstrings 
