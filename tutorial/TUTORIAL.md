@@ -58,14 +58,14 @@ If this runs without errors, then you are set to go!
 
 ## Part C: Processing with metacalibration
 
-:red_circle: **C1**  [Running sextractor]()
+:red_circle: **C1**  [Running sextractor](C1_running_sextractor.ipynb)
 * status:  TBA
 
-:red_circle: **C2**  [create MEDS]()
+:red_circle: **C2**  [create MEDS](C2_creat_MEDS.ipynb)
 * status:  TBA
 
-:red_circle: **C3**  [metacalibration on a grid]()
+:red_circle: **C3**  [metacalibration on a grid](C3_metacal_on_a_grid.ipynb)
 * status:  TBA
 
-:red_circle: **C4**  [metacalibration of cluster injection]()
+:red_circle: **C4**  [metacalibration of cluster injection](C4_metacal_on_cluster_injections.ipynb)
 * status:  TBA
