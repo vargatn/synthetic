@@ -1,5 +1,5 @@
-
 # SYNTHETIC - synthetic galaxy clusters and images, end to end.
+
 
 ![synthetic galaxy cluster rendered from synthetic catalog](./doc/banner.png)
 
@@ -11,6 +11,7 @@
 The package is aimed to be representative of the data analysis setup of the Dark Energy Science Consorcium (DESC) of the Legace Survey of Space and Time (LSST).
 
 ### Synthetic data is:
+
     
  * artificially generated data
  * trained to be representative of the real scenario
