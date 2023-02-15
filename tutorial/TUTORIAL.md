@@ -33,13 +33,14 @@ If this runs without errors, then you are set to go!
 
 ## Part A: The generative model
 
-A1 [Prepare catalog](A1_prepare_catalogs.ipynb)
+**A1** [Prepare catalog](A1_prepare_catalogs.ipynb)
 
-A2 [Train cluster model](A2_train_cluster_model.ipynb)
+**A2** [Train cluster model](A2_train_cluster_model.ipynb)
 
-A3 [Work with galaxy distributions](A3_work_with_galaxy_distributions.ipynb)
+**A3** [Work with galaxy distributions](A3_work_with_galaxy_distributions.ipynb)
+status: :large_orange_diamond: scope added
 
-A4 [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
+**A4** [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
 
 ## Part B: Rendering images
 
