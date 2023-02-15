@@ -33,23 +33,28 @@ If this runs without errors, then you are set to go!
 
 ## Part A: The generative model
 
-**A1** [Prepare catalog](A1_prepare_catalogs.ipynb)
+**A1** :red_circle: [Prepare catalog](A1_prepare_catalogs.ipynb)
+* status:  TBA
 
-**A2** [Train cluster model](A2_train_cluster_model.ipynb)
+**A2** :red_circle: [Train cluster model](A2_train_cluster_model.ipynb)
+* status:  TBA
 
-**A3** [Work with galaxy distributions](A3_work_with_galaxy_distributions.ipynb)
-status: :large_orange_diamond: scope added
+**A3** :yellow_circle: [Work with galaxy distributions](A3_work_with_galaxy_distributions.ipynb)
+* status:  scope added, needs further figures and descriptions
 
-**A4** [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
+**A4** :red_circle: [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
+* status:  TBA
 
 ## Part B: Rendering images
 
-B1 [Render images from catalog](B1_render_image.ipynb)
+**B1** :yellow_circle: [Render images from catalog](B1_render_image.ipynb)
+* status:  scope added, needs description
 
-B2 [Inject images to catalog](B2_inject_image.ipynb)
+**B2** :red_circle: [Inject images to catalog](B2_inject_image.ipynb)
+* status:  TBA
 
-B3 [Add intra-cluster light (ICL) to images](B3_add_icl.ipynb)
-
+**B3** :red_circle: [Add intra-cluster light (ICL) to images](B3_add_icl.ipynb)
+* status:  TBA
 
 ## Processing with metacalibration
 
