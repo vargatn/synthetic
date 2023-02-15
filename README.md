@@ -3,10 +3,11 @@
 
 ![synthetic galaxy cluster rendered from synthetic catalog](./doc/banner.png)
 
+**Check out the [tutorials](./tutorial/README.md) to:**
 
-1) Generate synthetic images of optical galaxy cluster observations.
-2) Tools for reducing and processing synthetic images with metacalibration to obtain the input shear field.
-3) End-to-end method validation environment for numerical methods in weak lensing measurements of galaxy clusters 
+1) generate synthetic images of optical galaxy cluster observations.
+2) reduce and process synthetic images with metacalibration to obtain the input shear field.
+3) end-to-end method validation environment for numerical methods in weak lensing measurements of galaxy clusters 
 
 The package is aimed to be representative of the data analysis setup of the Dark Energy Science Consorcium (DESC) of the Legace Survey of Space and Time (LSST).
 
