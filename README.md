@@ -72,7 +72,7 @@ Key dependencies and versions are listed below:
 
 
 ## Getting Started
-For a first time user, please start with the tutorial notebook series in the [tutorial](./tutorial/TUTORIAL.md) folder.
+For a first time user, please start with the tutorial notebook series in the [tutorial](./tutorial/README.md) folder.
 
 Right now the best way to run this package is via a pre set conda environment. 
 
