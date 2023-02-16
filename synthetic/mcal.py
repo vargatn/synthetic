@@ -105,9 +105,9 @@ class MetacalFitter(object):
         return obj_info
 
     def get_prior(self, pixel_scale):
-        '''
+        """
         pix_scale: The pixel scale of the image, in arcsec / pixel
-        '''
+
 
         # This bit is needed for ngmix v2.x.x
         # won't work for v1.x.x
@@ -115,7 +115,7 @@ class MetacalFitter(object):
 
         # prior on ellipticity.  The details don't matter, as long
         # as it regularizes the fit.  This one is from Bernstein & Armstrong 2014
-
+        """
         g_sigma = 0.3
         g_prior = ngmix.priors.GPriorBA(g_sigma)
 
