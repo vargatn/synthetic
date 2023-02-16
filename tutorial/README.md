@@ -56,8 +56,9 @@ In case of a manual install, read more about the required dependencies [here](..
 * Learn to create MEDS files
 * Prepare for running metacalibration
 
-:red_circle: **C3**  [metacalibration on a grid](C3_metacal_on_a_grid.ipynb)
-* status:  TBA
+:yellow_circle: **C3**  [metacalibration on a grid](C3_metacal_on_a_grid.ipynb)
+* run a minimal version of metacalibration 
+* recover constant shear from a grid of postage stamp galaxies
 
 :red_circle: **C4**  [metacalibration of cluster injection](C4_metacal_on_cluster_injections.ipynb)
 * status:  TBA
