@@ -49,8 +49,8 @@ In case of a manual install, read more about the required dependencies [here](..
 
 ## Part C: Processing with metacalibration
 
-:red_circle: **C1**  [Running sextractor](C1_running_sextractor.ipynb)
-* status:  TBA
+:yellow_circle: **C1**  [Running sextractor](C1_running_sextractor.ipynb)
+* Learn to use the synthetic package to automatically wrap sextractor
 
 :red_circle: **C2**  [create MEDS](C2_creat_MEDS.ipynb)
 * status:  TBA
