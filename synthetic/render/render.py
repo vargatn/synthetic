@@ -14,7 +14,7 @@ the first stretch goal is to build a stand alone renderer which is encapsulated 
 import numpy as np
 import galsim
 import ngmix
-import panas as pd
+import pandas as pd
 import multiprocessing as mp
 from ..tools import partition, toflux
 
@@ -22,7 +22,7 @@ from ..tools import partition, toflux
 
 
 
-def radec2xy(ra, dec, sky_center,  pixel_scale=0.264, image_offset=(2499.5, 2499.5)):
+def radec2xy(ra, dec, sky_center,  pixel_scale=0.2, image_offset=(2499.5, 2499.5)):
     x = (ra - sky_center[0]) * 60 * 60 / pixel_scale + image_offset[0]
     y = (dec - sky_center[1]) * 60 * 60 / pixel_scale + image_offset[1]
     return x.values, y.values
@@ -66,7 +66,7 @@ def call_chunks(infodicts):
 
 
 class DrawField(object):
-    def __init__(self, canvas_size, catalog, center=(0., 0.), band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
+    def __init__(self, canvas_size, catalog, center=(0., 0.), band="g", pixel_scale=0.2, sky_level=1.e2, psf_fwhm=0.9):
         """
         This assumes a gaussian PSF
         """

@@ -19,7 +19,7 @@ class MockPSF(object):
 
 
 class Frame(object):
-    def __init__(self, catalog, name="canvas", canvas_size=5000, center=(0., 0.), band="i", noise_std=8.36, config_se="config.sex", pixel_scale=0.264):
+    def __init__(self, catalog, name="canvas", canvas_size=5000, center=(0., 0.), band="i", noise_std=8.36, config_se="config.sex", pixel_scale=0.2):
         self.catalog = catalog
         self.canvas_size = canvas_size
         self.band = band
