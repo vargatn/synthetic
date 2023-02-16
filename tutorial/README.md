@@ -36,7 +36,9 @@ If this runs without errors, then you are set to go!
 ## Part B: Rendering images
 
 :green_circle: **B1**  [Render images from catalog](B1_render_image.ipynb)
-* status:  scope added, needs description
+* Learn to turn a galaxy catalog into an image 
+* consider which column in the galaxy catalo
+* Turn fits images into color composites
 
 :red_circle: **B2**  [Inject images to catalog](B2_inject_image.ipynb)
 * status:  TBA
