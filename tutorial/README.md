@@ -60,5 +60,6 @@ In case of a manual install, read more about the required dependencies [here](..
 * run a minimal version of metacalibration 
 * recover constant shear from a grid of postage stamp galaxies
 
-:red_circle: **C4**  [metacalibration of cluster injection](C4_metacal_on_cluster_injections.ipynb)
-* status:  TBA
+:yellow_circle: **C4**  [metacalibration of cluster injection](C4_metacal_on_cluster_injections.ipynb)
+* Use the metacalibration algorithm in the cluster lensing scenario
+* Measure the tangential shear field induced by a galaxy cluster
