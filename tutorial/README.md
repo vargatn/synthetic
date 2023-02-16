@@ -39,8 +39,9 @@ If this runs without errors, then you are set to go!
 * Learn to turn a galaxy catalog into an image
 * Turn fits images into color composites
 
-:red_circle: **B2**  [Inject images to catalog](B2_inject_image.ipynb)
-* status:  TBA
+:yellow_circle: **B2**  [Inject galaxy cluster](B2_inject_image.ipynb)
+* Learn to inject a galaxy cluster at the catalog level 
+* Apply shear to background sources, based on lens geometry
 
 :red_circle: **B3**  [Add intra-cluster light (ICL) to images](B3_add_icl.ipynb)
 * status:  TBA
