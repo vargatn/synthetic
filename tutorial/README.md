@@ -55,7 +55,7 @@ In case of a manual install, read more about the required dependencies [here](..
 :yellow_circle: **C2**  [create MEDS](C2_creat_MEDS.ipynb)
 * Learn to create MEDS files
 * Prepare for running metacalibration
-* 
+
 :red_circle: **C3**  [metacalibration on a grid](C3_metacal_on_a_grid.ipynb)
 * status:  TBA
 
