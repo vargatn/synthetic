@@ -14,8 +14,18 @@ the first stretch goal is to build a stand alone renderer which is encapsulated 
 import numpy as np
 import galsim
 import ngmix
+import panas as pd
 import multiprocessing as mp
-from ..tools import partition
+from ..tools import partition, toflux
+
+
+
+
+
+def radec2xy(ra, dec, sky_center,  pixel_scale=0.264, image_offset=(2499.5, 2499.5)):
+    x = (ra - sky_center[0]) * 60 * 60 / pixel_scale + image_offset[0]
+    y = (dec - sky_center[1]) * 60 * 60 / pixel_scale + image_offset[1]
+    return x.values, y.values
 
 
 def draw_info(info):
@@ -53,6 +63,7 @@ def call_chunks(infodicts):
     return stamps, bounds, ids
 
 #TODO make more elegant via galsim
+
 
 class DrawField(object):
     def __init__(self, canvas_size, catalog, center=(0., 0.), band="g", pixel_scale=0.264, sky_level=1.e2, psf_fwhm=0.9):
@@ -205,9 +216,4 @@ def scale_image(canvas):
 
 
 
-
-
-
-def color_composite():
-    pass
 
