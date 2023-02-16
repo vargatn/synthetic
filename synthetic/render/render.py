@@ -195,9 +195,12 @@ class DrawField(object):
 
     def collate_stamps(self):
         for i in np.arange(len(self.catalog)):
-            stamp = self.stamps[i]
-            bb = stamp.bounds & self.canvas.bounds
-            self.canvas[bb] += stamp[bb]
+            try:
+                stamp = self.stamps[i]
+                bb = stamp.bounds & self.canvas.bounds
+                self.canvas[bb] += stamp[bb]
+            except galsim.errors.GalSimBoundsError:
+                pass
 
     def add_icl(self, arr):
         self.canvas += arr
