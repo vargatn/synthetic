@@ -53,8 +53,9 @@ In case of a manual install, read more about the required dependencies [here](..
 * Learn to use the synthetic package to automatically wrap sextractor
 
 :yellow_circle: **C2**  [create MEDS](C2_creat_MEDS.ipynb)
-* status:  TBA
-
+* Learn to create MEDS files
+* Prepare for running metacalibration
+* 
 :red_circle: **C3**  [metacalibration on a grid](C3_metacal_on_a_grid.ipynb)
 * status:  TBA
 
