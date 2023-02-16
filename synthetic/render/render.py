@@ -171,7 +171,7 @@ class DrawField(object):
         if nprocess > len(self.infodicts):
             nprocess = len(self.infodicts)
 
-        print('starting xshear calculations in ' + str(nprocess) + ' processes')
+        print('starting postage stamp calculations in ' + str(nprocess) + ' processes')
         fparchunks = partition(self.infodicts, nprocess)
         pool = mp.Pool(processes=nprocess)
 
