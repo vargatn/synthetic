@@ -17,7 +17,7 @@ and use the [checkup script](./env_checkup.py)
 
 If this runs without errors, then you are set to go!
 
-*TBA* hands on dependency install instructions..
+In case of a manual install, read more about the required dependencies [here](../DEPENDENCIES.md)
 
 ## Part A: The generative model
 
