@@ -52,7 +52,7 @@ In case of a manual install, read more about the required dependencies [here](..
 :green_circle: **C1**  [Running sextractor](C1_running_sextractor.ipynb)
 * Learn to use the synthetic package to automatically wrap sextractor
 
-:green_circle: **C2**  [create MEDS](C2_creat_MEDS.ipynb)
+:green_circle: **C2**  [create MEDS](C2_create_MEDS.ipynb)
 * Learn to create MEDS files
 * Prepare for running metacalibration
 
