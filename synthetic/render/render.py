@@ -202,6 +202,7 @@ class DrawField(object):
             except galsim.errors.GalSimBoundsError:
                 pass
 
+
     def add_icl(self, arr):
         self.canvas += arr
 
