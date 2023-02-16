@@ -43,7 +43,7 @@ If this runs without errors, then you are set to go!
 * Learn to inject a galaxy cluster at the catalog level 
 * Apply shear to background sources, based on lens geometry
 
-:yellow_circle: **B3**  [Add intra-cluster light (ICL) to images](B3_add_icl.ipynb)
+:green_circle: **B3**  [Add intra-cluster light (ICL) to images](B3_add_icl.ipynb)
 * Learn to render intra cluster light as a synthetic image
 * apply intra cluster light to the rendered images
 
