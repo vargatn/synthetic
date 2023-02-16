@@ -21,16 +21,16 @@ In case of a manual install, read more about the required dependencies [here](..
 
 ## Part A: The generative model
 
-:red_circle: **A1** [Prepare catalog](A1_prepare_catalogs.ipynb)
+:yellow_circle: **A1** [Prepare catalog](A1_prepare_catalogs.ipynb)
 * status:  TBA
 
-:red_circle: **A2** [Train cluster model](A2_train_cluster_model.ipynb)
+:yellow_circle: **A2** [Train cluster model](A2_train_cluster_model.ipynb)
 * status:  TBA
 
 :yellow_circle: **A3**  [Work with galaxy distributions](A3_work_with_galaxy_distributions.ipynb)
 * status:  scope added, needs further figures and descriptions
 
-:red_circle: **A4**  [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
+:yellow_circle: **A4**  [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
 * status:  TBA
 
 ## Part B: Rendering images
