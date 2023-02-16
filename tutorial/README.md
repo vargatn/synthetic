@@ -35,7 +35,7 @@ If this runs without errors, then you are set to go!
 
 ## Part B: Rendering images
 
-:yellow_circle: **B1**  [Render images from catalog](B1_render_image.ipynb)
+:green_circle: **B1**  [Render images from catalog](B1_render_image.ipynb)
 * status:  scope added, needs description
 
 :red_circle: **B2**  [Inject images to catalog](B2_inject_image.ipynb)
