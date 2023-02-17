@@ -31,7 +31,9 @@ Metacalibration packages, sadly sometimes difficult to install
 
 Additional packages, should be manually installed:
 
-    images from https://github.com/esheldon/images
+images from https://github.com/esheldon/images
 
-    MEDS from https://github.com/esheldon/meds
+    pip install git+https://github.com/esheldon/images.git
+    pip install git+https://github.com/esheldon/meds
+    pip install git+https://github.com/esheldon/psfex.git
 
