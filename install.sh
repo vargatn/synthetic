@@ -18,5 +18,7 @@ pip install git+https://github.com/esheldon/images.git \
             git+https://github.com/esheldon/meds \
             git+https://github.com/esheldon/psfex.git \
 
+python setup.py install
+
 python ./tutorial/env_checkup.py
 
