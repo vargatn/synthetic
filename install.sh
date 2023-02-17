@@ -9,7 +9,10 @@ conda activate synth
 conda env list
 
 conda install -y -c conda-forge ngmix=1.3.9 # this is a really complex package, if this installs, probably everything else works
-conda install -y -c conda-forge fitsio galsim healpy esutil
+conda install -y -c conda-forge galsim
+conda install -y -c conda-forge fitsio
+conda install -y -c conda-forge esutil
+conda install -y -c conda-forge healpy
 
 pip install git+https://github.com/esheldon/images.git \
             git+https://github.com/esheldon/meds \
