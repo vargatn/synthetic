@@ -73,20 +73,39 @@ At the moment this package is installed from github, we are actively working to 
 
     git clone git@github.com:vargatn/synthetic.git
 
-then install via setup.py
+then use the supplied [install script](../install.sh)
 
-    python setup.py install
+Be sure to have anaconda setup on your machine
+
+    conda 23.1.0
+
+run the install script in **interactive mode** this is important for the environment management
+
+    bash -i install.sh
+
+The script aims to set up a new conda environment for you named `synth`,
+with all dependencies and the `synthetic` package installed
+
+you can activate it as
+
+    conda activate synth
+
+and deactivate it as
+
+    conda deactivate
+
+If something goes wrong, you can delete it as
+
+    conda env remove -n synth
 
 **Dependencies**
+Key dependencies and versions are listed [here](DEPENDENCIES.md)
 
 To make the end-to-end data generation, rendering and metacalibration steps work there is a fair bit of external packages which need to work together
 
-This can be quite complex to install together, so we designed the package in a compartmentalized way,
-so that the different stages can be used with some dependencies missing
-
 It is our aim to provide a working ipython kernel on the DESC machines, and locally at the USM, where the package is validated to run.
 
-Key dependencies and versions are listed [here](DEPENDENCIES.md)
+
 
 
 

@@ -1,31 +1,26 @@
-# Manual installation guide
+# Automatic install
 
-The scope of this activity is to set up a conda environment in which
-the synthetic package and its dependencies are installed properly.
-
-Please consider that some of the dependencies are really fragile, and follow the instructions carefully
-
-## anaconda setup
+Use the supplied [install script](../install.sh)
 
 Be sure to have anaconda setup on your machine
 
     conda 23.1.0
-    python-3.9
 
-Now create a new environment
+run the install script in **interactive mode** this is important for the environment management
 
-    conda create -n synth python=3.9 anaconda
+    bash -i install.sh
 
-This environment can be activated via 
+The script aims to set up a new conda environment for you named `synth`,
+with all dependencies and the `synthetic` package installed
+
+you can activate it as
 
     conda activate synth
 
-    conda install -c conda-forge ngmix=1.3.9
-    conda install -c conda-forge fitsio
-    conda install -c conda-forge galsim
-    conda install -c conda-forge healpy
-    conda install -c conda-forge esutil
+and deactivate it as
 
-    pip install git+https://github.com/esheldon/images.git
-    pip install git+https://github.com/esheldon/meds
-    pip install git+https://github.com/esheldon/psfex.git
+    conda deactivate
+
+If something goes wrong, you can delete it as
+
+    conda env remove -n synth
