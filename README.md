@@ -52,8 +52,7 @@ This step is based on Varga et al 2021, and includes
 ## Getting Started
 For a first time user, please start with the tutorial notebook series in the [tutorial](./tutorial/README.md) folder.
 
-
-Right now the best way to run this package is via a pre set conda environment. 
+Right now the best way to run this package is via a pre set conda (Anaconda) environment.
 
 At the moment this is available in the LMU USM server, and is planned to be added for the NERSC LSST DESC server.
 
@@ -73,13 +72,13 @@ At the moment this package is installed from github, we are actively working to 
 
     git clone git@github.com:vargatn/synthetic.git
 
-then use the supplied [install script](../install.sh)
+then use the supplied [install script](./install.sh)
 
-Be sure to have anaconda setup on your machine
+**Be sure to have anaconda setup on your machine** (not miniconda). We've tested the install across multiple machines with
 
     conda 23.1.0
 
-run the install script in **interactive mode** this is important for the environment management
+There's an automated install script, which you have torun  in **interactive mode** this is important for the environment management
 
     bash -i install.sh
 
