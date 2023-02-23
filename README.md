@@ -70,7 +70,7 @@ If this runs without errors, then you are set to go!
 
 At the moment this package is installed from github, we are actively working to bring this to conda and pip
 
-    git clone git@github.com:vargatn/synthetic.git
+    git clone https://github.com/vargatn/synthetic.git
 
 then use the supplied [install script](./install.sh)
 
