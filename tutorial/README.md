@@ -5,13 +5,13 @@
 
 There are two ways to run this package
 
-1) following a manual install descr 
+### Following a manual install descr 
 
 Instructions for this are found [here](../README.md)
 
 You read more about the required dependencies [here](../DEPENDENCIES.md)
 
-2  via a pre set conda environment.  
+###  Via a pre set conda environment.  
 At the moment this is available in the LMU USM server, where you should use the following command to activate the environment 
     
     conda activate /home/moon/vargatn/anaconda3/envs/galsim
