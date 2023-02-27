@@ -23,7 +23,7 @@ In case of a manual install, read more about the required dependencies [here](..
 
 This section is run first at a place where one can access the DC2 dataset along with the `desc_stack_weekly`
 
-:yellow_circle: **A0** [Prepare catalog on NERSC](A1_prepare_catalogs_on_NERSC.ipynb)
+:yellow_circle: **A0** [Prepare catalog on NERSC](A0_prepare_catalogs_on_NERSC.ipynb)
 * status:  Must be validated again, should seek people who can do it
 * data is hosted on NERSC
 
