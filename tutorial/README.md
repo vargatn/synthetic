@@ -33,7 +33,11 @@ Then the rest can be ran on your local machine / server as well. In case you hav
 then overview notebook A0 to understand how to prepare for the rest of the examples.
 
 :yellow_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
-* status:  TBA
+* Load and collate galaxy catalogs 
+* Set up cluster line-of-sight emulation script
+* INTENSIVE Draw samples from the proposal galaxy catalog and calculate survival scores for rejection sampling.
+* Define KDE model for cluster member galaxy features
+* Visualize model against simulations
 * data TBA
 
 :yellow_circle: **A2**  [Work with galaxy distributions](A2_work_with_galaxy_distributions.ipynb)
