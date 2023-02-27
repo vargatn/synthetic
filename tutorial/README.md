@@ -32,7 +32,7 @@ This section is run first at a place where one can access the DC2 dataset along 
 Then the rest can be ran on your local machine / server as well. In case you have the DC2 data on hand locally,
 then overview notebook A0 to understand how to prepare for the rest of the examples.
 
-:yellow_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
+:green_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
 * Load and collate galaxy catalogs 
 * Set up cluster line-of-sight emulation script
 * INTENSIVE Draw samples from the proposal galaxy catalog and calculate survival scores for rejection sampling.
