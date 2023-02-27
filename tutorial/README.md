@@ -21,19 +21,24 @@ In case of a manual install, read more about the required dependencies [here](..
 
 ## Part A: The generative model
 
-:yellow_circle: **A1** [Prepare catalog](A1_prepare_catalogs.ipynb)
+This section is run first at a place where one can access the DC2 dataset along with the `desc_stack_weekly`
+
+:yellow_circle: **A0** [Prepare catalog on NERSC](A1_prepare_catalogs_on_NERSC.ipynb)
+* status:  Must be validated again, should seek people who can do it
+* data is hosted on NERSC
+
+Then the rest can be ran on your local machine / server as well. In case you have the DC2 data on hand locally,
+then overview notebook A0 to understand how to prepare for the rest of the examples.
+
+:yellow_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
 * status:  TBA
 * data TBA
 
-:yellow_circle: **A2** [Train cluster model](A2_train_cluster_model.ipynb)
-* status:  TBA
-* data TBA
-
-:yellow_circle: **A3**  [Work with galaxy distributions](A3_work_with_galaxy_distributions.ipynb)
+:yellow_circle: **A2**  [Work with galaxy distributions](A2_work_with_galaxy_distributions.ipynb)
 * status:  scope added, needs further figures and descriptions
 * data TBA
 
-:yellow_circle: **A4**  [Draw cluster catalog](A4_draw_cluster_catalog.ipynb)
+:yellow_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
 * status:  TBA
 * data TBA
 
