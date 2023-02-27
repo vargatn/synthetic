@@ -36,12 +36,11 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * Load and collate galaxy catalogs 
 * Set up cluster line-of-sight emulation script
 * INTENSIVE Draw samples from the proposal galaxy catalog and calculate survival scores for rejection sampling.
-* Define KDE model for cluster member galaxy features
-* Visualize model against simulations
 * data hosted separately, currently on google drive
 
 :yellow_circle: **A2**  [Work with galaxy distributions](A2_work_with_galaxy_distributions.ipynb)
-* status:  scope added, needs further figures and descriptions
+* Define KDE model for cluster member galaxy features
+* Visualize model against simulations
 * data hosted separately, currently on google drive
 
 :yellow_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
