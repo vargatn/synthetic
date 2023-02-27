@@ -113,7 +113,7 @@ class DrawField(object):
 
     def make_psf(self):
         self.psf = galsim.Gaussian(fwhm=self.psf_fwhm)
-        self.image_epsf = self.psf.drawImage(scale=self.pixel_scale)
+        self.image_epsf = self.psf.drawImage(scale=self.pixel_scale, )
 
     def make_bdf_pars(self):
         self.bdf_pars = np.zeros((len(self.catalog), 7))

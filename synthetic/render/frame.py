@@ -14,8 +14,12 @@ class MockPSF(object):
         """This is a hacked PSFex solution, giving directly the psf image"""
         self.psf_image = psf_image
 
+    def get_center(self, *args, **kwargs):
+        center = self.psf_image.center
+        return center.x, center.y
+
     def get_rec(self, *args, **kwargs):
-        return self.psf_image
+        return self.psf_image.array
 
 
 class Frame(object):

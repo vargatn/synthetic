@@ -18,8 +18,8 @@
   <PARAM name="Soft_Auth" datatype="char" arraysize="*" ucd="meta.bib.author;meta.software" value="Emmanuel Bertin"/>
   <PARAM name="Soft_Ref" datatype="char" arraysize="*" ucd="meta.bib.bibcode;meta.software" value="2006ASPC..351..112B"/>
   <PARAM name="NThreads" datatype="int" ucd="meta.number;meta.software" value="160"/>
-  <PARAM name="Date" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="2022-10-11"/>
-  <PARAM name="Time" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="15:17:51"/>
+  <PARAM name="Date" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="2023-02-27"/>
+  <PARAM name="Time" datatype="char" arraysize="*" ucd="time.event.end;meta.software" value="17:55:59"/>
   <PARAM name="Duration" datatype="float" ucd="time.event;meta.software" value="0" unit="s"/>
   <PARAM name="User" datatype="char" arraysize="*" ucd="meta.curation" value="vargatn"/>
   <PARAM name="Host" datatype="char" arraysize="*" ucd="meta.curation" value="seitz2"/>
@@ -105,28 +105,28 @@
    <DATA><TABLEDATA>
     <TR>
      <TD>star_canvas_cat.ldac</TD><TD>no ident</TD><TD>1</TD>
-     <TD>400</TD><TD>400</TD><TD>400</TD><TD>400</TD>
-     <TD>399</TD><TD>399</TD><TD>399</TD><TD>399</TD>
-     <TD>3.54734</TD><TD>3.54734</TD><TD>3.54734</TD>
-     <TD>0.754753</TD><TD>0.754753</TD><TD>0.754753</TD>
-     <TD>1.06904</TD><TD>1.06904</TD><TD>1.06904</TD>
-     <TD>3.34915</TD><TD>3.35097</TD><TD>3.35199</TD>
-     <TD>0.884162</TD><TD>0.884614</TD><TD>0.884925</TD>
-     <TD>1.28055e-06</TD><TD>0.000296408</TD><TD>0.00030119</TD>
-     <TD>-0.000262138</TD><TD>-0.000259642</TD><TD>0.000262802</TD>
-     <TD>-0.000206984</TD><TD>-0.000142981</TD><TD>0.000124058</TD>
-     <TD>9.91251</TD><TD>9.99548</TD><TD>9.99993</TD>
-     <TD>0.0161402</TD><TD>0.0163233</TD><TD>0.0164042</TD>
-     <TD>3.27895</TD><TD>3.28085</TD><TD>3.2818</TD>
-     <TD>0.865629</TD><TD>0.866103</TD><TD>0.866396</TD>
-     <TD>2.65175e-06</TD><TD>1.62417e-05</TD><TD>0.000379083</TD>
-     <TD>-0.000349919</TD><TD>-1.4374e-06</TD><TD>0.000373554</TD>
-     <TD>-0.000208327</TD><TD>-1.61779e-05</TD><TD>0.000160705</TD>
-     <TD>9.98604</TD><TD>9.99988</TD><TD>9.99988</TD>
-     <TD>0.0149807</TD><TD>0.0151526</TD><TD>0.0151575</TD>
-     <TD>0.408637</TD><TD>0.40951</TD><TD>0.409901</TD>
-     <TD>27.2396</TD><TD>27.2521</TD><TD>27.2787</TD>
-     <TD>0.263996</TD><TD>0.263998</TD><TD>0.264</TD>
+     <TD>100</TD><TD>100</TD><TD>100</TD><TD>100</TD>
+     <TD>100</TD><TD>100</TD><TD>100</TD><TD>100</TD>
+     <TD>4.5921</TD><TD>4.5921</TD><TD>4.5921</TD>
+     <TD>0.977043</TD><TD>0.977043</TD><TD>0.977043</TD>
+     <TD>3.67516</TD><TD>3.67516</TD><TD>3.67516</TD>
+     <TD>4.39096</TD><TD>4.39222</TD><TD>4.39404</TD>
+     <TD>0.878193</TD><TD>0.878431</TD><TD>0.878799</TD>
+     <TD>1.24843e-06</TD><TD>0.000205783</TD><TD>0.000341597</TD>
+     <TD>-0.000341345</TD><TD>0.000191088</TD><TD>0.000306481</TD>
+     <TD>-9.59126e-05</TD><TD>7.63685e-05</TD><TD>0.000170255</TD>
+     <TD>9.96051</TD><TD>9.9971</TD><TD>9.99982</TD>
+     <TD>0.0153776</TD><TD>0.0158213</TD><TD>0.0160614</TD>
+     <TD>4.3382</TD><TD>4.33912</TD><TD>4.3409</TD>
+     <TD>0.867639</TD><TD>0.867831</TD><TD>0.868172</TD>
+     <TD>5.4934e-08</TD><TD>0.000155058</TD><TD>0.000333981</TD>
+     <TD>-0.000332022</TD><TD>0.000106854</TD><TD>0.000319649</TD>
+     <TD>-8.97427e-05</TD><TD>0.000112362</TD><TD>0.000120716</TD>
+     <TD>9.99214</TD><TD>9.99796</TD><TD>10</TD>
+     <TD>0.0147209</TD><TD>0.0151582</TD><TD>0.0153582</TD>
+     <TD>0.400465</TD><TD>0.402757</TD><TD>0.406202</TD>
+     <TD>46.7576</TD><TD>46.8196</TD><TD>46.9514</TD>
+     <TD>0.199998</TD><TD>0.199999</TD><TD>0.2</TD>
     </TR>
    </TABLEDATA></DATA>
   </TABLE>
@@ -206,28 +206,28 @@
    <DATA><TABLEDATA>
     <TR>
      <TD>1</TD>
-     <TD>400</TD><TD>400</TD><TD>400</TD><TD>400</TD>
-     <TD>399</TD><TD>399</TD><TD>399</TD><TD>399</TD>
-     <TD>3.54734</TD><TD>3.54734</TD><TD>3.54734</TD>
-     <TD>0.754753</TD><TD>0.754753</TD><TD>0.754753</TD>
-     <TD>1.06904</TD><TD>1.06904</TD><TD>1.06904</TD>
-     <TD>3.34915</TD><TD>3.35097</TD><TD>3.35199</TD>
-     <TD>0.884162</TD><TD>0.884614</TD><TD>0.884925</TD>
-     <TD>1.28055e-06</TD><TD>0.000296408</TD><TD>0.00030119</TD>
-     <TD>-0.000262138</TD><TD>-0.000259642</TD><TD>0.000262802</TD>
-     <TD>-0.000206984</TD><TD>-0.000142981</TD><TD>0.000124058</TD>
-     <TD>9.91251</TD><TD>9.99548</TD><TD>9.99993</TD>
-     <TD>0.0161402</TD><TD>0.0163233</TD><TD>0.0164042</TD>
-     <TD>3.27895</TD><TD>3.28085</TD><TD>3.2818</TD>
-     <TD>0.865629</TD><TD>0.866103</TD><TD>0.866396</TD>
-     <TD>2.65175e-06</TD><TD>1.62417e-05</TD><TD>0.000379083</TD>
-     <TD>-0.000349919</TD><TD>-1.4374e-06</TD><TD>0.000373554</TD>
-     <TD>-0.000208327</TD><TD>-1.61779e-05</TD><TD>0.000160705</TD>
-     <TD>9.98604</TD><TD>9.99988</TD><TD>9.99988</TD>
-     <TD>0.0149807</TD><TD>0.0151526</TD><TD>0.0151575</TD>
-     <TD>0.408637</TD><TD>0.40951</TD><TD>0.409901</TD>
-     <TD>27.2396</TD><TD>27.2521</TD><TD>27.2787</TD>
-     <TD>0.263996</TD><TD>0.263998</TD><TD>0.264</TD>
+     <TD>100</TD><TD>100</TD><TD>100</TD><TD>100</TD>
+     <TD>100</TD><TD>100</TD><TD>100</TD><TD>100</TD>
+     <TD>4.5921</TD><TD>4.5921</TD><TD>4.5921</TD>
+     <TD>0.977043</TD><TD>0.977043</TD><TD>0.977043</TD>
+     <TD>3.67516</TD><TD>3.67516</TD><TD>3.67516</TD>
+     <TD>4.39096</TD><TD>4.39222</TD><TD>4.39404</TD>
+     <TD>0.878193</TD><TD>0.878431</TD><TD>0.878799</TD>
+     <TD>1.24843e-06</TD><TD>0.000205783</TD><TD>0.000341597</TD>
+     <TD>-0.000341345</TD><TD>0.000191088</TD><TD>0.000306481</TD>
+     <TD>-9.59126e-05</TD><TD>7.63685e-05</TD><TD>0.000170255</TD>
+     <TD>9.96051</TD><TD>9.9971</TD><TD>9.99982</TD>
+     <TD>0.0153776</TD><TD>0.0158213</TD><TD>0.0160614</TD>
+     <TD>4.3382</TD><TD>4.33912</TD><TD>4.3409</TD>
+     <TD>0.867639</TD><TD>0.867831</TD><TD>0.868172</TD>
+     <TD>5.4934e-08</TD><TD>0.000155058</TD><TD>0.000333981</TD>
+     <TD>-0.000332022</TD><TD>0.000106854</TD><TD>0.000319649</TD>
+     <TD>-8.97427e-05</TD><TD>0.000112362</TD><TD>0.000120716</TD>
+     <TD>9.99214</TD><TD>9.99796</TD><TD>10</TD>
+     <TD>0.0147209</TD><TD>0.0151582</TD><TD>0.0153582</TD>
+     <TD>0.400465</TD><TD>0.402757</TD><TD>0.406202</TD>
+     <TD>46.7576</TD><TD>46.8196</TD><TD>46.9514</TD>
+     <TD>0.199998</TD><TD>0.199999</TD><TD>0.2</TD>
     </TR>
    </TABLEDATA></DATA>
   </TABLE>
@@ -237,7 +237,7 @@
    <FIELD name="Time" datatype="char" arraysize="*" ucd="meta;time.event.end"/>
    <FIELD name="Msg" datatype="char" arraysize="*" ucd="meta"/>
    <DATA><TABLEDATA>
-    <TR><TD>2022-10-11</TD><TD>15:17:51</TD><TD>This executable has been compiled using a version of the ATLAS library without sPerformance will be degraded.</TD></TR>
+    <TR><TD>2023-02-27</TD><TD>17:55:59</TD><TD>This executable has been compiled using a version of the ATLAS library without sPerformance will be degraded.</TD></TR>
    </TABLEDATA></DATA>
   </TABLE>
   <RESOURCE ID="Config" name="Config">
