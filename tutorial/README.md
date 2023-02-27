@@ -32,7 +32,7 @@ This section is run first at a place where one can access the DC2 dataset along 
 Then the rest can be ran on your local machine / server as well. In case you have the DC2 data on hand locally,
 then overview notebook A0 to understand how to prepare for the rest of the examples.
 
-:yellow_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
+:large_blue_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
 * status:  TBA
 * data TBA
 
