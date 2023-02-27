@@ -47,12 +47,12 @@ In case of a manual install, read more about the required dependencies [here](..
 :green_circle: **B2**  [Inject galaxy cluster](B2_inject_image.ipynb)
 * Learn to inject a galaxy cluster at the catalog level 
 * Apply shear to background sources, based on lens geometry
-* data TBA
+* data included in repo
 
 :green_circle: **B3**  [Add intra-cluster light (ICL) to images](B3_add_ICL.ipynb)
 * Learn to render intra cluster light as a synthetic image
 * apply intra cluster light to the rendered images
-* data TBA
+* data included in repo
 
 ## Part C: Processing with metacalibration
 
