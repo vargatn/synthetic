@@ -38,7 +38,9 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * INTENSIVE Draw samples from the proposal galaxy catalog and calculate survival scores for rejection sampling.
 * data hosted separately, currently on google drive
 
-:yellow_circle: **A2**  [Work with galaxy distributions](A2_work_with_galaxy_distributions.ipynb)
+**TODO** works, but needs a rewarding figure
+
+:green_circle: **A2**  [Work with galaxy distributions](A2_work_with_galaxy_distributions.ipynb)
 * Define KDE model for cluster member galaxy features
 * Visualize model against simulations
 * data hosted separately, currently on google drive
