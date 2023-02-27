@@ -3,21 +3,25 @@
 
 ## Test the installation
 
-Right now the best way to run this package is via a pre set conda environment. 
+There are two ways to run this package
 
-At the moment this is available in the LMU USM server, and is planned to be added for the NERSC LSST DESC server.
+1) following a manual install descr 
 
-On the USM you should use the following command to activate the environment 
+Instructions for this are found [here](../README.md)
+
+You read more about the required dependencies [here](../DEPENDENCIES.md)
+
+2  via a pre set conda environment.  
+At the moment this is available in the LMU USM server, where you should use the following command to activate the environment 
     
     conda activate /home/moon/vargatn/anaconda3/envs/galsim
 
-and use the [checkup script](./env_checkup.py)
+
+In either case, you can use the [checkup script](./env_checkup.py)
 
     python env_checkup.py
 
 If this runs without errors, then you are set to go!
-
-In case of a manual install, read more about the required dependencies [here](../DEPENDENCIES.md)
 
 ## Part A: The generative model
 
