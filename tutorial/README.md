@@ -1,17 +1,16 @@
 # Getting started with the SYNTHETIC package
 
 
-## Test the installation
 
 There are two ways to run this package
 
-### Following a manual install descr 
+### Following a manual install
 
 Instructions for this are found [here](../README.md)
 
 You read more about the required dependencies [here](../DEPENDENCIES.md)
 
-###  Via a pre set conda environment.  
+###  Pre set conda environment.  
 At the moment this is available in the LMU USM server, where you should use the following command to activate the environment 
     
     conda activate /home/moon/vargatn/anaconda3/envs/galsim
