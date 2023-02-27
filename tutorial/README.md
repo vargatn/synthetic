@@ -25,14 +25,14 @@ This section is run first at a place where one can access the DC2 dataset along 
 
 **note** this is quite time intensive, is primarily provided for reference on how the data is prepared 
 
-:yellow_circle: **A0** [Prepare catalog on NERSC](A0_prepare_catalogs_on_NERSC.ipynb)
+:large_blue_circle: **A0** [Prepare catalog on NERSC](A0_prepare_catalogs_on_NERSC.ipynb)
 * status:  Must be validated again, should seek people who can do it
 * data is hosted on NERSC
 
 Then the rest can be ran on your local machine / server as well. In case you have the DC2 data on hand locally,
 then overview notebook A0 to understand how to prepare for the rest of the examples.
 
-:large_blue_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
+:yellow_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
 * status:  TBA
 * data TBA
 
