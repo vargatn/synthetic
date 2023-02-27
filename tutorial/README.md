@@ -42,7 +42,7 @@ In case of a manual install, read more about the required dependencies [here](..
 :green_circle: **B1**  [Render images from catalog](B1_render_image.ipynb)
 * Learn to turn a galaxy catalog into an image
 * Turn fits images into color composites
-* data TBA
+* data included in repo
 
 :green_circle: **B2**  [Inject galaxy cluster](B2_inject_image.ipynb)
 * Learn to inject a galaxy cluster at the catalog level 

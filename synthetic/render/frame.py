@@ -30,7 +30,7 @@ class Frame(object):
         self.center = center
 
 
-    def render(self, nprocess=100):
+    def render(self, nprocess=1):
         self.df = render.DrawField(self.canvas_size, self.catalog, center=self.center, band=self.band)
         self.df.prepare()
         self.df.make_wcs()
