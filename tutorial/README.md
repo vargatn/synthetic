@@ -8,7 +8,7 @@ There are two ways to run this package
 
 Instructions for this are found [here](../README.md)
 
-You read more about the required dependencies [here](../DEPENDENCIES.md)
+You can read more about the required dependencies [here](../DEPENDENCIES.md)
 
 ###  Pre set conda environment.  
 At the moment this is available in the LMU USM server, where you should use the following command to activate the environment 
@@ -24,7 +24,7 @@ If this runs without errors, then you are set to go!
 
 **Tutorial Status:**
 
-1) Part A :yellow_circle: semi functional and data not yet packaged
+1) Part A :yellow_circle: mostly functional but data not yet packaged
 2) Part C :green_circle: functional and data packaged
 3) Part B :green_circle: functional and data packaged
 
