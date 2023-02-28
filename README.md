@@ -54,7 +54,7 @@ For a first time user, please start with the tutorial notebook series in the [tu
 
 Right now the best way to run this package is via a pre set conda (Anaconda) environment.
 
-At the moment this is available in the LMU USM server, and is planned to be added for the NERSC LSST DESC server.
+At the moment this is available in the LMU USM server.
 
 On the USM you should use the following command to activate the environment 
     
