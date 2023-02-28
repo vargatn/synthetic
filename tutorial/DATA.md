@@ -14,3 +14,39 @@ Alternatively the same files can be produced via notebooks A0, A1 and A2
 
 If you would prefer a different way of accessing the data files, please contact us at t.varga@physik.lmu.de
 
+## Setting up the file structure
+
+The data files for this example calculation are pre packaged, and should be downloaded from a link provided upon request.
+
+    1 dc2-alpha_concentric_sample-v01_test-03.tar.gz
+    2 cosmoDC2_v1.1.4_refpixels.h5
+    3 clust_dc2-sim-LOS_v1.h5
+    
+These should be downloaded and placed in a file structure such that
+
+    /root/
+    |----/resamples/ 
+    |----/dc2-alpha_concentric_sample-v01_test-03.tar.gz
+    |----/dc2_cluster_sim_cutouts/cosmoDC2_v1.1.4_refpixels.h5
+    |----/dc2_cluster_sim_cutouts/clust_dc2-sim-LOS_v1.h5
+    
+from within the root folder, extract the .tar.gz file using the command
+
+    tar xzf dc2-alpha_concentric_sample-v01_test-03.tar.gz -C  resamples --strip-components 1    
+    
+This should yield a file structure as below
+ 
+     /root/
+    |----/resamples/ 
+    |--------------/dc2-alpha_concentric_sample-v01_test-03_run0_1846435878_rbin0.p
+    |--------------/dc2-alpha_concentric_sample-v01_test-03_run0_1846435878_rbin0_samples.fits
+    |--------------/dc2-alpha_concentric_sample-v01_test-03_run0_1846435878_rbin0_scores.fits
+            .
+            .
+            .
+    |--------------/dc2-alpha_concentric_sample-v01_test-03_run3_664487101_rbin3.p
+    |--------------/dc2-alpha_concentric_sample-v01_test-03_run3_664487101_rbin3_samples.fits
+    |--------------/dc2-alpha_concentric_sample-v01_test-03_run3_664487101_rbin3_scores.fits            
+    |----/dc2-alpha_concentric_sample-v01_test-03.tar.gz
+    |----/dc2_cluster_sim_cutouts/cosmoDC2_v1.1.4_refpixels.h5
+    |----/dc2_cluster_sim_cutouts/clust_dc2-sim-LOS_v1.h5

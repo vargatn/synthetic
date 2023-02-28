@@ -46,7 +46,7 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * Load and collate galaxy catalogs 
 * Set up cluster line-of-sight emulation script
 * INTENSIVE Draw samples from the proposal galaxy catalog and calculate survival scores for rejection sampling.
-* data hosted separately, currently on [google drive](DATA.md)
+* data hosted separately, see [DATA ACCESS](DATA.md)
 
 **TODO** works, but needs a rewarding figure
 

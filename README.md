@@ -52,6 +52,8 @@ This step is based on Varga et al 2021, and includes
 ## Getting Started
 For a first time user, please start with the tutorial notebook series in the [tutorial](./tutorial/README.md) folder.
 
+To get the full data set, see instructions on [DATA ACCESS](./tutorial/DATA.md)
+
 Right now the best way to run this package is via a pre set conda (Anaconda) environment.
 
 At the moment this is available in the LMU USM server.
