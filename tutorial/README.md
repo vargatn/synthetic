@@ -24,7 +24,7 @@ If this runs without errors, then you are set to go!
 
 **Tutorial Status:**
 
-1) Part A :yellow_circle: mostly functional but data not yet packaged
+1) Part A :yellow_circle: mostly functional data hosted externally
 2) Part C :green_circle: functional and data packaged
 3) Part B :green_circle: functional and data packaged
 
