@@ -17,6 +17,7 @@ conda install -y -c conda-forge fitsio
 conda install -y -c conda-forge esutil
 conda install -y -c conda-forge healpy
 conda install -y -c conda-forge scikit-learn
+conda install -y -c conda-forge astromatic-source-extractor
 
 pip install git+https://github.com/esheldon/images.git \
             git+https://github.com/esheldon/meds \
