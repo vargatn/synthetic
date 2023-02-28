@@ -39,8 +39,8 @@ This section is run first at a place where one can access the DC2 dataset along 
 * status:  Must be validated again, should seek people who can do it
 * data is hosted on NERSC
 
-Then the rest can be ran on your local machine / server as well. In case you have the DC2 data on hand locally,
-then overview notebook A0 to understand how to prepare for the rest of the examples.
+Then the rest can be ran on your local machine / server as well. In case you want to process the DC2 data locally,
+then overview notebook A0 to understand how to prepare for the rest of the examples. Otherwise you can go ahead with the pre-packaged data products for each tutorial
 
 :green_circle: **A1** [Train cluster model](A1_train_cluster_model.ipynb)
 * Load and collate galaxy catalogs 
