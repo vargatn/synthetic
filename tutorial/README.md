@@ -22,6 +22,13 @@ In either case, you can use the [checkup script](./env_checkup.py)
 
 If this runs without errors, then you are set to go!
 
+**Tutorial Status:**
+
+1) Part A :yellow_circle: semi functional and data not yet packaged
+2) Part C :green_circle: functional and data packaged
+3) Part B :green_circle: functional and data packaged
+
+
 ## Part A: The generative model
 
 This section is run first at a place where one can access the DC2 dataset along with the `desc_stack_weekly`
