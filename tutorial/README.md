@@ -65,27 +65,32 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * Learn to turn a galaxy catalog into an image
 * Turn fits images into color composites
 * data included in repo
+* Validated by G. Queirolo
 
 :green_circle: **B2**  [Inject galaxy cluster](B2_inject_image.ipynb)
 * Learn to inject a galaxy cluster at the catalog level 
 * Apply shear to background sources, based on lens geometry
 * data included in repo
+* Validated by G. Queirolo
 
 :green_circle: **B3**  [Add intra-cluster light (ICL) to images](B3_add_ICL.ipynb)
 * Learn to render intra cluster light as a synthetic image
 * apply intra cluster light to the rendered images
 * data included in repo
+* Validated by G. Queirolo
 
 ## Part C: Processing with metacalibration
 
 :green_circle: **C1**  [Running sextractor](C1_running_sextractor.ipynb)
 * Learn to use the synthetic package to automatically wrap sextractor
 * data included in repo
+* Validated by G. Queirolo
 
 :green_circle: **C2**  [create MEDS](C2_create_MEDS.ipynb)
 * Learn to create MEDS files
 * Prepare for running metacalibration
 * data included in repo
+* Validated by G. Queirolo
 
 :green_circle: **C3**  [metacalibration on a grid](C3_metacal_on_a_grid.ipynb)
 * run a minimal version of metacalibration 
