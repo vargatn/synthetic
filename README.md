@@ -74,7 +74,7 @@ At the moment this package is installed from github, we are actively working to 
 
     git clone https://github.com/vargatn/synthetic.git
 
-then use the supplied [install script](./install.sh)
+then use the supplied [install script](./mamba_install.sh)
 
 **Be sure to have anaconda setup on your machine** (not miniconda). We've tested the install across multiple machines with
 
@@ -82,7 +82,7 @@ then use the supplied [install script](./install.sh)
 
 There's an automated install script, which you have torun  in **interactive mode** this is important for the environment management
 
-    bash -i install.sh
+    bash -i mamba_install.sh
 
 The script aims to set up a new conda environment for you named `synth`,
 with all dependencies and the `synthetic` package installed
