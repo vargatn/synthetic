@@ -7,7 +7,7 @@ conda env list
 conda install mamba -y -c conda-forge
 mamba env update --file base_env.yml --prune
 
-mamba install pip
+mamba install -y pip
 
 mamba install -y -c conda-forge ngmix=1.3.9
 mamba install -y -c conda-forge galsim
