@@ -22,6 +22,8 @@ Additional python packages, available from conda
     sklearn >= 1.0.2
     astropy
     galsim >= 2.2.4
+    astromatic-source-extractor
+    esutil
 
 Metacalibration packages, sadly sometimes difficult to install
 
