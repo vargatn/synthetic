@@ -58,6 +58,7 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 :yellow_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
 * Draw random realizations from the KDE galaxy cluster model
 * data hosted separately, currently on google drive
+
 **TODO** Add direct continuity to B1
 
 ## Part B: Rendering images
