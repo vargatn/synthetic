@@ -11,7 +11,7 @@
 
 The package is aimed to be representative of the data analysis setup of the Dark Energy Science Consorcium (DESC) of the Legace Survey of Space and Time (LSST).
 
-*** Check out the [Intro presentation](https://docs.google.com/presentation/d/1BU39hIaoyaZ_iNmb0mcigwy84mpMKAskx9NxYkrbCes/edit?usp=sharing)***
+***Check out the [Intro presentation](https://docs.google.com/presentation/d/1BU39hIaoyaZ_iNmb0mcigwy84mpMKAskx9NxYkrbCes/edit?usp=sharing)***
 
 ### Synthetic data is:
 
