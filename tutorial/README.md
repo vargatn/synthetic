@@ -24,7 +24,7 @@ If this runs without errors, then you are set to go!
 
 **Tutorial Status:**
 
-1) Part A :yellow_circle: mostly functional data hosted externally
+1) Part A :green_circle: functional and data hosted externally
 2) Part C :green_circle: functional and data packaged
 3) Part B :green_circle: functional and data packaged
 
@@ -56,8 +56,9 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * data hosted separately, currently on google drive
 
 :yellow_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
-* status:  TBA
+* Draw random realizations from the KDE galaxy cluster model
 * data hosted separately, currently on google drive
+**TODO** Add direct continuity to B1
 
 ## Part B: Rendering images
 
