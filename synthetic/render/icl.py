@@ -71,8 +71,85 @@ def toflux(mag):
 
 
 class DrawICL(object):
+    """
+    A class to draw the intra-cluster light (ICL) of a galaxy cluster
+
+    The the intra cluster light is connected to the brigh central galaxy (BCG) of the galaxy cluster
+
+    Attributes
+    ----------
+    mass : float
+        The mass of the galaxy cluster in units of solar masses.
+    z : float
+        The redshift of the galaxy cluster.
+    bcg : dict
+        A dictionary containing the following keys:
+            - "g1": float, the shape g1 of the BCG;
+            - "g2": float, the shape g2 of the BCG;
+            - "color_gr": float, the g-r color of the BCG;
+            - "color_ri": float, the r-i color of the BCG;
+            - "color_iz": float, the i-z color of the BCG;
+            - "size": float, the effective radius of the BCG in arcseconds.
+    galpath : str
+        The path to the galaxy catalog file.
+    mstarpath : str
+        The path to the file containing the stellar mass estimates.
+    jk_profile_root : str
+        The root path of the jackknife profile files.
+    pixel_scale : float, optional
+        The pixel scale in units of arcseconds per pixel (default is 0.264 "/pix).
+    canvas_size : int, optional
+        The size of the output image in pixels (default is 5000).
+    H0 : float, optional
+        The Hubble constant in units of km/s/Mpc (default is 70).
+    Om0 : float, optional
+        The present-day matter density parameter (default is 0.3).
+
+    Methods
+    -------
+    load_data():
+        Load necessary data from file.
+    prepare_icl():
+        Prepare ICL data by calculating the distance matrix and ICL array.
+    colorize_icl():
+        Calculate the ICL flux arrays for each band.
+    get_icl():
+        Perform all steps consecutively.
+    """
     def __init__(self, mass, z, bcg, galpath, mstarpath, jk_profile_root,
                  pixel_scale=0.264, canvas_size=5000, H0=70, Om0=0.3):
+        """
+        Initialize a DrawICL object to render the intra-cluster light (ICL) of a galaxy cluster
+
+        Parameters
+        ----------
+        mass : float
+            The mass of the galaxy cluster in units of solar masses.
+        z : float
+            The redshift of the galaxy cluster.
+        bcg : dict
+            A dictionary containing the following keys:
+                - "g1": float, the shape g1 of the BCG;
+                - "g2": float, the shape g2 of the BCG;
+                - "color_gr": float, the g-r color of the BCG;
+                - "color_ri": float, the r-i color of the BCG;
+                - "color_iz": float, the i-z color of the BCG;
+                - "size": float, the effective radius of the BCG in arcseconds.
+        galpath : str
+            The path to the galaxy catalog file.
+        mstarpath : str
+            The path to the file containing the stellar mass estimates.
+        jk_profile_root : str
+            The root path of the jackknife profile files.
+        pixel_scale : float, optional
+            The pixel scale in units of arcseconds per pixel (default is 0.264 "/pix).
+        canvas_size : int, optional
+            The size of the output image in pixels (default is 5000).
+        H0 : float, optional
+            The Hubble constant in units of km/s/Mpc (default is 70).
+        Om0 : float, optional
+            The present-day matter density parameter (default is 0.3).
+        """
         self.mass = mass
         self.z = z
         self.bcg = bcg
@@ -85,10 +162,24 @@ class DrawICL(object):
         self.Om0 = Om0
 
     def load_data(self):
+        """
+        Load necessary data from file
+
+        Returns
+        -------
+        None
+        """
         self.procmag = ProcMag(self.galpath, self.mstarpath)
         self.iclprof = ICLProf(self.jk_profile_root, self.procmag, H0=self.H0, Om0=self.Om0)
 
     def prepare_icl(self):
+        """
+        Prepare ICL data by calculating the distance matrix and ICL array.
+
+        Returns
+        -------
+        None
+        """
         sval = np.sqrt(self.bcg["size"])
 
         xsize = self.canvas_size
@@ -110,6 +201,15 @@ class DrawICL(object):
         self.iclvals[self.iclvals < 1.] = 1.
 
     def colorize_icl(self):
+        """
+        Calculate the ICL flux arrays for each band
+
+        The ICL is assumed to have the same color as the BCG
+
+        Returns
+        -------
+        None
+        """
         self.magvals_i = tomag(self.iclvals)
         self.magvals_g = self.bcg["color_gr"] + self.bcg["color_ri"] + self.magvals_i
         self.magvals_r = self.bcg["color_ri"] + self.magvals_i
@@ -121,7 +221,18 @@ class DrawICL(object):
         self.flux_z = toflux(self.magvals_z).T
 
     def get_icl(self):
+        """
+        Perform all steps consecutively.
 
+        1) Load necessary data from file paths and calculate the ICL for a given BCG.
+        2) Prepare ICL data by calculating the distance matrix and ICL array.
+        3) Calculate the ICL flux arrays for each band
+
+
+        Returns
+        -------
+        None
+        """
         self.load_data()
         self.prepare_icl()
         self.colorize_icl()
@@ -129,7 +240,23 @@ class DrawICL(object):
 
 def int_schechter(l1, l2):
     """
-    # int_a^b x x^{alpha} e^{-x} dx ~ (incomplete_Gamma(alpha-1,a)-incomplete_Gamma(alpha-1,b))
+    Calculate the integral of x * x^(alpha) * e^(-x) from l1 to l2, which is
+    equivalent to (incomplete_Gamma(alpha-1,a)-incomplete_Gamma(alpha-1,b)).
+
+    int_a^b x x^{alpha} e^{-x} dx ~ (incomplete_Gamma(alpha-1,a)-incomplete_Gamma(alpha-1,b))
+
+    Parameters:
+    -----------
+    l1 : float
+        The lower limit of the integral.
+    l2 : float
+        The upper limit of the integral.
+
+    Returns:
+    --------
+    float
+        The result of the integral.
+
     """
     alpha = -1
     return scipy.special.gammainc(alpha + 2, l2) - scipy.special.gammainc(alpha + 2, l1)
@@ -137,15 +264,53 @@ def int_schechter(l1, l2):
 
 class ProcMag(object):
     def __init__(self, galpath, mstarpath):
+        """
+        Class to handle processing of galaxy magnitudes and stellar masses
+
+        Parameters
+        ----------
+        galpath: str
+            Path to the galaxy magnitude file.
+        mstarpath: str
+            Path to the file containing stellar mass.
+
+        Attributes
+        ----------
+        galpath: str
+            Path to the galaxy magnitude file.
+        tab: pandas.DataFrame
+            DataFrame containing the galaxy magnitude data.
+        mstar_z: list
+            List of redshift values for which stellar mass data is available.
+        mstar_m: list
+            List of corresponding stellar mass values.
+
+        Methods
+        -------
+        _get_galtable(fname):
+            Load galaxy magnitude data from the specified file.
+
+        _load_mstar(fname):
+            Load stellar mass data from the specified file.
+
+        get_mag(z, band):
+            Calculate the magnitude of a red galaxy template in the specified band at the given redshift.
+
+        get_mstar(z, band):
+            Calculate the stellar mass of a galaxy in the specified band at the given redshift.
+
+        """
         self.galpath = galpath
         self.tab = self._load_galtable(self.galpath)
         self.mstar_z, self.mstar_m = self._load_mstar(mstarpath)
 
     def _load_galtable(self, fname):
         """
-        # z, Age, Age_sed, r_des, i_des, r_chft, i_chft
-        # for a passively evolving stellar population,
-        # BC03 with solar metallicity, no dust, exponentially declining SFH with tau=0.1, Age =10 Gyr at z=0
+        Load galaxy magnitude data from the specified file.
+
+        z, Age, Age_sed, r_des, i_des, r_chft, i_chft
+        for a passively evolving stellar population,
+        BC03 with solar metallicity, no dust, exponentially declining SFH with tau=0.1, Age =10 Gyr at z=0
         """
         _tab = np.genfromtxt(fname)
         columns = ["z", "Age", "Age_sed", "rDES", "iDES", "rCFHT", "iCFHT"]
@@ -153,6 +318,20 @@ class ProcMag(object):
         return tab
 
     def _load_mstar(self, fname):
+        """
+        Load the stellar mass data from the specified file.
+
+        Parameters
+        ----------
+        fname: str
+            The path to the file containing the stellar mass data.
+
+        Returns
+        -------
+        tuple
+            A tuple containing two lists, `mstar_z` and `mstar_m`, where `mstar_z` is the list of redshift values for which
+            stellar mass data is available and `mstar_m` is the corresponding list of stellar mass values.
+        """
         mstar = fio.read(fname)
         mstar_z = [m[0] for m in mstar]
         mstar_m = [m[1] for m in mstar]
@@ -160,14 +339,36 @@ class ProcMag(object):
 
     def get_mag(self, z, band):
         """
-        # magnitudes of a red galaxy template as a function of redshift
-        # allows conversion of colors between DES r,i and CFHT r,i and also luminosity evolution of an ageing stellar population
+        Calculate the magnitude of a red galaxy template in the specified band at the given redshift.
+
+        allows conversion of colors between DES r,i and CFHT r,i and also luminosity evolution of an ageing stellar population
+
+        Parameters
+        ----------
+        z: float
+            redshift of the galaxy cluster
+        band: str
+            photometric band, currently "rDES", "iDES", "rCFHT", "iCFHT"
+
+
         """
         return np.interp(z, self.tab["z"], self.tab[band])
 
     def get_mstar(self, z, band):
         """
-        # m* magnitude in any of these four filters
+        Calculate the stellar mass of a galaxy in the specified band at the given redshift.
+
+        Parameters
+        ----------
+        z: float
+            The redshift of the galaxy.
+        band: str
+            The band in which the magnitude of the galaxy is measured. "rDES", "iDES", "rCFHT", "iCFHT"
+
+        Returns
+        -------
+        float
+            The estimated stellar mass of the galaxy in the specified band at the given redshift.
         """
         return np.interp(z, self.mstar_z, self.mstar_m) + self.get_mag(z, band) - self.get_mag(z, "iDES")
 
