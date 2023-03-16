@@ -507,14 +507,54 @@ class ICLProf(object):
 
 
 def fit_icl_model(xarr, yarr, x0=(1, -2.3, -0.9), xpivot=100):
+    """
+    Fits a model to the given x and y data using least squares optimization.
+
+    Args:
+        xarr (array-like): The x-data.
+        yarr (array-like): The y-data.
+        x0 (tuple, optional): The initial guess for the model parameters (default is (1, -2.3, -0.9)).
+        xpivot (float, optional): The pivot point for the model (default is 100).
+
+    Returns:
+        tuple: The optimized model parameters.
+    """
     params = optimize.leastsq(residual, x0, args=(xarr, yarr, xpivot))[0]
     return params
 
 def model_func(xarr, amp=1.16, alpha=-2.27, beta=-1.3, xpivot=100):
+    """
+    Calculates a broken power law function
+
+    float(amp) * ((xarr / xpivot)**float(alpha) + (xarr / xpivot)**float(beta))
+
+    Args:
+        xarr (array-like): The x-data.
+        amp (float, optional): The amplitude parameter (default is 1.16).
+        alpha (float, optional): The exponent alpha (default is -2.27).
+        beta (float, optional): The exponent beta (default is -1.3).
+        xpivot (float, optional): The pivot point for the model (default is 100).
+
+    Returns:
+        array-like: The y-values of the model function.
+    """
     yarr = float(amp) * ((xarr / xpivot)**float(alpha) + (xarr / xpivot)**float(beta))
     return yarr
 
 def residual(x, xarr, yarr, xpivot=100):
+    """
+    Returns the residuals between the data and model for the given parameters.
+
+    Args:
+        x (tuple): The model parameters.
+        xarr (array-like): The x-data.
+        yarr (array-like): The y-data.
+        xpivot (float, optional): The pivot point for the model (default is 100).
+
+    Returns:
+        array-like: The residuals between the data and model.
+    """
+
     amp = x[0]
     alpha = x[1]
     beta = x[2]
