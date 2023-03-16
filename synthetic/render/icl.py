@@ -18,12 +18,55 @@ import astropy.cosmology as cosmology
 import astropy.units as u
 
 def sigmoid(arr, pos, k,):
+    """
+    Calculate the sigmoid function for each element of an array.
+
+    Parameters
+    ----------
+    arr : numpy.ndarray
+        The input array.
+    pos : float
+        The inflection point of the sigmoid function.
+    k : float
+        The slope of the sigmoid function.
+
+    Returns
+    -------
+    numpy.ndarray
+        The result of the sigmoid function for each element of the input array.
+    """
     return 1 / (1 + np.exp((arr - pos) * k))
 
 def tomag(flux):
+    """
+    Convert a flux value to a magnitude value, assuming a zero point of 30
+
+    Parameters
+    ----------
+    flux : float, np.array
+        The flux value to be converted.
+
+    Returns
+    -------
+    float
+        The resulting magnitude value.
+    """
     return 30. -2.5 * np.log10(flux)
 
 def toflux(mag):
+    """
+    Convert a magnitude value to a flux value, assuming a zero point of 30
+
+    Parameters
+    ----------
+    mag : float or np.array
+        The magnitude value to be converted.
+
+    Returns
+    -------
+    float, np.array
+        The resulting flux value.
+    """
     return 10**((mag - 30) / (-2.5))
 
 
