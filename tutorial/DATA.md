@@ -8,7 +8,7 @@ At the moment the key files are accessed from the following google drive links:
 
 [cosmoDC2_v1.1.4_refpixels.h5](https://drive.google.com/file/d/1v6k1V4kaDFfLE-qgWQbQ54x2D3BYCA5J/view?usp=share_link)
 
-[dc2-alpha_concentric_sample-v01_test-03.tar.gz](https://drive.google.com/file/d/1v6k1V4kaDFfLE-qgWQbQ54x2D3BYCA5J/view?usp=share_link)
+[dc2-alpha_concentric_sample-v01_test-03.tar.gz](https://drive.google.com/file/d/1Rwe-ZSkIvUMbTgGDiP3HLP0nC7fiQIhv/view?usp=sharing)
 
 Alternatively the same files can be produced via notebooks A0, A1 and A2
 
