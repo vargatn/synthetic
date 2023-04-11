@@ -55,7 +55,7 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * Visualize model against simulations
 * data hosted separately, currently on google drive
 
-:yellow_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
+:green_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
 * Draw random realizations from the KDE galaxy cluster model
 * data hosted separately, currently on google drive
 
