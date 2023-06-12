@@ -48,8 +48,6 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 * INTENSIVE Draw samples from the proposal galaxy catalog and calculate survival scores for rejection sampling.
 * data hosted separately, see [DATA ACCESS](DATA.md)
 
-**TODO** works, but needs a rewarding figure
-
 :green_circle: **A2**  [Work with galaxy distributions](A2_work_with_galaxy_distributions.ipynb)
 * Define KDE model for cluster member galaxy features
 * Visualize model against simulations
@@ -58,8 +56,6 @@ then overview notebook A0 to understand how to prepare for the rest of the examp
 :green_circle: **A3**  [Draw cluster catalog](A3_draw_cluster_catalog.ipynb)
 * Draw random realizations from the KDE galaxy cluster model
 * data hosted separately, currently on google drive
-
-**TODO** Add direct continuity to B1
 
 ## Part B: Rendering images
 
