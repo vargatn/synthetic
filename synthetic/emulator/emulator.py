@@ -1,4 +1,5 @@
 """
+DOC HERE
 """
 
 import fitsio as fio
