@@ -22,6 +22,7 @@ In either case, you can use the [checkup script](./env_checkup.py)
 
 If this runs without errors, then you are set to go!
 
+
 **Tutorial Status:**
 
 1) Part A :green_circle: functional and data hosted externally
