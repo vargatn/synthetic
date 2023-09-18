@@ -6,6 +6,21 @@ import astropy.units as u
 
 
 def sigma_crit_inv(zclust, z, cosmo):
+    """
+    Calculates the sigma crit inverse in pc / Msun
+
+    Parameters
+    ----------
+    zclust: float
+        cluster redshift
+    z: float
+    cosmo: astropy.cosmology object
+        FlatLCDM cosmology
+
+    Returns
+    -------
+        np.float Sigma crit inverse in pc / Msun
+    """
     if z > zclust:
         prefac = (4. * np.pi * constants.G / (constants.c ** 2.)).to(u.pc / u.Msun)
 
@@ -22,6 +37,15 @@ def sigma_crit_inv(zclust, z, cosmo):
 
 class Shear(object):
     def __init__(self, canvas, image_epsf, maskmap, pixel_scale):
+        """
+
+        Parameters
+        ----------
+        canvas
+        image_epsf
+        maskmap
+        pixel_scale
+        """
         """ITs very important for the images and stamps and psf images to have a proper image format, includeing WCS"""
         self.canvas = canvas.copy()
         self.image_epsf = galsim.ImageF(image_epsf, wcs=galsim.PixelScale(pixel_scale))
@@ -30,7 +54,18 @@ class Shear(object):
         self.pixel_scale = pixel_scale
 
     def extract_stamps(self, centers, imasks, sizes):
+        """
 
+        Parameters
+        ----------
+        centers
+        imasks
+        sizes
+
+        Returns
+        -------
+
+        """
         self.stamps = []
         self.masks = []
         for i in np.arange(len(centers)):
@@ -53,10 +88,19 @@ class Shear(object):
 
     def estimate_shear(self, sky_var=0, shear_est="KSB"):
         """
+
         shear modes = REGAUSS’, ‘LINEAR’, ‘BJ’, or ‘KSB’
         which is raw or canvas, default to canvas
-        """
 
+        Parameters
+        ----------
+        sky_var
+        shear_est
+
+        Returns
+        -------
+
+        """
         #         stamps = self.raw_stamps
         # if which == "canvas":
         stamps = self.stamps
