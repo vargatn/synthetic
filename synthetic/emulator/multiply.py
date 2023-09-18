@@ -3,7 +3,26 @@ import numpy as np
 
 def result_reader(samples, scores, m_factor=20, nratio=1., seed=None):
     """
-    Calculate the index of accepted proposal draws based on the scores and jacobians calcualted above
+    Calculate the index of accepted proposal draws based on the scores and jacobians
+
+    Parameters
+    ----------
+    samples: pd.DataFrame
+        random samples from the rejection sampling
+    scores: pd.DataFrame
+        log probabilities and related quantities from the rejection sampling
+    m_factor: float
+        We are going to accept 1 / m_factor fraction  of the points, that is with 20, we accept 5%
+    nratio: float
+        overdensity of points around clusters compared to random points
+    seed: int
+        random seed
+
+    Returns
+    -------
+        Indexes of samples assigned to the field, Indexes of samples assigned to clusters
+
+
     """
     dc_score = np.exp(scores["dc"]) * np.abs(scores["dc_jac"])
     wr_score = np.exp(scores["wr"]) * np.abs(scores["wr_jac"])

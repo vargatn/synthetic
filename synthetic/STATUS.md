@@ -11,7 +11,7 @@
     ----/emulator.py  0%
     ----/indexer.py   0%
     ----/kde.py       0%
-    ----/multiply.py  0%
+    ----/multiply.py  100%
     ----/reader.py    0%
     render
     ----/frame.py      100%
