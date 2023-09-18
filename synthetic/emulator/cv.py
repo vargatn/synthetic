@@ -11,6 +11,7 @@ class KFoldCV(object):
     def __init__(self, cont, nfold=5, nprocess=100, seed=None):
         """
         K-fold crossvalidator for KDE containers
+
         Parameters
         ----------
         cont: KDEContainer
@@ -76,7 +77,19 @@ class KFoldCV(object):
         return mscores
 
     def _split(self, label):
-        """splits data into train and test k-fold"""
+        """
+        splits data into train and test k-fold
+
+        Parameters
+        -----------
+        label: int
+            label for the k-fold leave one out
+
+        Returns
+        ------------
+            Training data, Test data
+
+        """
 
         _ind = self.labels != label
         train = self._shrink(_ind)
@@ -86,6 +99,20 @@ class KFoldCV(object):
         return train, test
 
     def _shrink(self, index):
+        """
+        Selects a subset of the data from the KDEContainer
+
+        This is needed becouse both the data and the weights need to be selected the same way
+
+        Parameters
+        ----------
+        index: np.array
+            index array for which entries to select
+
+        Returns
+        -------
+            a shrinked version of the KDEContainer
+        """
         _cont = copy.copy(self.cont)
         _cont.data = _cont.data.iloc[index].copy()
         _cont.weights = _cont.weights.iloc[index].copy()
@@ -95,6 +122,32 @@ class KFoldCV(object):
 
 
 def run_cv_scores(infodicts):
+    """
+    Calculate cross-validation scores on multiple cores with the KDEContainer
+
+    The required keys for each info in infodicts
+
+    * info["train"] : training data KDContainer (shrinked to training indexes)
+    * info["bandwidth"] : the bandwidth to be evaluated
+    * info["test_data : the test data
+    * info["test_weights"] : the weights for the test data
+
+    The Return results will contain
+
+    * result["scores"] : the scores
+    * result["jac"] : the jacobian to transform the score to the data fram from the internal KDE frame
+    * result["weights"] : weights for each score, copied directly from the input info
+
+    Parameters
+    ----------
+    infodicts: list of dict
+        list of dictionaries containing the instructions for scoring each k-fold split
+
+    Returns
+    -------
+        array of scores
+
+    """
     pool = mp.Pool(processes=len(infodicts))
     try:
         pp = pool.map_async(_score_cv_samples, infodicts)
@@ -112,6 +165,32 @@ def run_cv_scores(infodicts):
 
 
 def _score_cv_samples(info):
+    """
+    Called by run_cv_scores to calculate scores on with the KDEContainer
+
+    The required keys for info
+
+    * info["train"] : training data KDContainer (shrinked to training indexes)
+    * info["bandwidth"] : the bandwidth to be evaluated
+    * info["test_data : the test data
+    * info["test_weights"] : the weights for the test data
+
+    The Return results will contain
+
+    * result["scores"] : the scores
+    * result["jac"] : the jacobian to transform the score to the data fram from the internal KDE frame
+    * result["weights"] : weights for each score, copied directly from the input info
+
+    Parameters
+    ----------
+    infodicts: dict
+        dictionary containing the instructions for scoring this particular k-fold split
+
+    Returns
+    -------
+        dict of result scores
+
+    """
     train = info["train"]
 
     train.construct_kde(bandwidth=info["bandwidth"])
@@ -123,4 +202,4 @@ def _score_cv_samples(info):
     result["jac"] = np.ones(len(result)) * jac
     result["weights"] = info["test_weights"].values
 
-    return
+    return result
