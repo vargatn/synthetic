@@ -202,7 +202,18 @@ def partition(lst, n):
 
 
 def save(fname, tables):
-    """The key is data/tab{i}"""
+    """
+    Saves a data table to HDF file in the 'data/tab{i}' format
+
+    The key is data/tab{i}
+
+    Parameters
+    ----------
+    fname : str
+        file name  to save
+    tables : list
+        list of pandas dataframes to save
+    """
     for i, csample in enumerate(tables):
         key = "data/tab" + str(i)
         #         print(key)
@@ -210,7 +221,18 @@ def save(fname, tables):
 
 
 def load(fname, imax=4):
-    """The key is data/tab{i}"""
+    """
+    Loads a list of data table from HDF file in the 'data/tab{i}' format
+
+    The key is data/tab{i}
+
+    Parameters
+    ----------
+    fname : str
+        file name to read
+    imax : int
+        number of tables to read
+    """
     tables = []
     for i in np.arange(imax):
         key = "data/tab" + str(i)
@@ -220,5 +242,6 @@ def load(fname, imax=4):
     return tables
 
 def toflux(mag):
+    """Converts mag to flux"""
     flux = 10**((mag - 30)/-2.5)
     return flux
