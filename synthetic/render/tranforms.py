@@ -3,6 +3,23 @@ from ..tools import  toflux
 
 def make_mock(table, sky_center, pixel_scale=0.2, image_offset=(2499.5, 2499.5)):
     """
+    Create a galaxy catalog from the output of the KDE resampler
+
+    This is what can be passed to the Frame class
+
+    Parameters
+    ----------
+    table: pd.Dataframe
+        galaxy catalog drawn from the outputs of random samples
+    sky_center: tuple
+        sky center in ra,dec
+    pixel_scale: float
+        pixel scale in pixel / arcsec
+    image_offset; tuple
+        Center of the image, should be at the middle of the canvas (5k by 5k canvases fit a cluster nicely)
+    Returns
+    -------
+        Mock catalog which can be passed to the Frame object
 
     """
     mock_catalog = pd.DataFrame()
@@ -31,7 +48,26 @@ def make_mock(table, sky_center, pixel_scale=0.2, image_offset=(2499.5, 2499.5))
 
 def make_transformed_curated_cluster(curated_cluster, sky_center, pixel_scale=0.2, image_offset=(2499.5, 2499.5)):
     """
-    This function exists for historical reasons as a backup in notation
+    Create a galaxy catalog from the output of the KDE resampler,
+
+    **This function exists for historical reasons as a backup in notation**
+
+    This is what can be passed to the Frame class
+
+    Parameters
+    ----------
+    table: pd.Dataframe
+        galaxy catalog drawn from the outputs of random samples
+    sky_center: tuple
+        sky center in ra,dec
+    pixel_scale: float
+        pixel scale in pixel / arcsec
+    image_offset; tuple
+        Center of the image, should be at the middle of the canvas (5k by 5k canvases fit a cluster nicely)
+    Returns
+    -------
+        Mock catalog which can be passed to the Frame object
+
     """
     mock_cluster = pd.DataFrame()
     mock_cluster["RA"] = curated_cluster["RA"] / 60. + sky_center[0]

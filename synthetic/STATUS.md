@@ -1,7 +1,8 @@
 # Status of the package
 
-
 ## Documentation
+
+    Sphinx autodoc built 0%
 
     tools.py        100%
     mcal.py         0%
@@ -17,7 +18,7 @@
     ----/icl.py        100%
     ----/render.py     100%
     ----/shear.py      100%
-    ----/transforms.py 0%
+    ----/transforms.py 100%
 
 
 
