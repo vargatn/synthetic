@@ -15,8 +15,8 @@
     render
     ----/frame.py      100%
     ----/icl.py        100%
-    ----/render.py     1ß0%
-    ----/shear.py      0%
+    ----/render.py     100%
+    ----/shear.py      100%
     ----/transforms.py 0%
 
 

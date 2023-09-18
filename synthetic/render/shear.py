@@ -38,13 +38,18 @@ def sigma_crit_inv(zclust, z, cosmo):
 class Shear(object):
     def __init__(self, canvas, image_epsf, maskmap, pixel_scale):
         """
+        Shear measurement through galsim.KSB, NOTE: this is a backup method, prefer metacal in the other module
 
         Parameters
         ----------
-        canvas
-        image_epsf
-        maskmap
-        pixel_scale
+        canvas: galsim.Image
+            Image we are working with
+        image_epsf: galsim.Image
+            PSF image
+        maskmap: galsim.Image
+            maskmap from source extractor
+        pixel_scale: float
+            pixel scale of the image
         """
         """ITs very important for the images and stamps and psf images to have a proper image format, includeing WCS"""
         self.canvas = canvas.copy()
@@ -55,16 +60,19 @@ class Shear(object):
 
     def extract_stamps(self, centers, imasks, sizes):
         """
+        Makes a cutout postage stamp from the observed image
+
+        This is separate from the rendering, where we create the image from true postage stamps
+
 
         Parameters
         ----------
-        centers
-        imasks
-        sizes
-
-        Returns
-        -------
-
+        centers: np.array
+            target centers
+        imasks: np.array
+            integer value to associate the center with the maskmap pixel values
+        sizes: np.array
+            sizes for postage stamps
         """
         self.stamps = []
         self.masks = []
@@ -88,18 +96,20 @@ class Shear(object):
 
     def estimate_shear(self, sky_var=0, shear_est="KSB"):
         """
+        Estimate shear using KSB through galsim
 
-        shear modes = REGAUSS’, ‘LINEAR’, ‘BJ’, or ‘KSB’
-        which is raw or canvas, default to canvas
+        the results will be stored as
+
+            self.shears : Shear values (e1, e2)
+            self.success :  bool flag if the corresponding value is measured or not
+            self.shears_error : error on the shear values
 
         Parameters
         ----------
-        sky_var
-        shear_est
-
-        Returns
-        -------
-
+        sky_var: float
+            sky variance Gaussian
+        shear_est: str
+            shear modes = REGAUSS’, ‘LINEAR’, ‘BJ’, or ‘KSB’
         """
         #         stamps = self.raw_stamps
         # if which == "canvas":
