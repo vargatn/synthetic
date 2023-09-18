@@ -7,14 +7,42 @@ import sklearn.decomposition as decomp
 
 
 def weighted_mean(values, weights):
+    """
+    Simple weighted average
+
+    Parameters
+    ----------
+    values: np.array
+        input values
+    weights: np.array
+        weights for input values
+
+    Returns
+    -------
+    average: np.array
+        weighted average
+
+    """
     average = np.average(values, axis=0, weights=weights)
     return average
 
 
 def weighted_std(values, weights):
     """
-    Return the weighted average and standard deviation.
-    values, weights -- Numpy ndarrays with the same shape.
+    Simple weighted standard deviation
+
+    Parameters
+    ----------
+    values: np.array
+        input values
+    weights: np.array
+        weights for input values
+
+    Returns
+    -------
+    std: np.array
+        weighted standard deviation
+
     """
     average = np.average(values, axis=0, weights=weights)
     variance = np.average((values - average) ** 2, axis=0, weights=weights)
@@ -66,6 +94,7 @@ class KDEContainer(object):
     def _weight_multiplicator(arr, weights):
         """
         turns element wise-weight into multiplicitiy of elements in list
+
         Parameters
         ----------
         arr: np.array
@@ -74,7 +103,7 @@ class KDEContainer(object):
             weights
         Returns
         -------
-
+        newarr: np.array
         """
         multiplier = np.round(weights)
         newarr = []
@@ -85,9 +114,21 @@ class KDEContainer(object):
         return newarr
 
     def shuffle(self):
+        """Shuffles the data for the KDE in place"""
         self.sample(n=None, frac=1.)
 
     def sample(self, n=None, frac=1.):
+        """
+        Takes a subsample of the data for the KDE, either a number or a fraction **IN PLACE**
+
+        Parameters
+        ----------
+        n: int
+            number of samples
+        frac: float
+            fraction of samples
+
+        """
         inds = np.arange(len(self.data))
         print(self.data.shape)
         print(inds.shape)
@@ -101,7 +142,13 @@ class KDEContainer(object):
         self.weights = self.weights.iloc[inds].copy().reset_index(drop=True)
 
     def fit_pca(self):
-        """Standardize -> PCA -> Standardize"""
+        """
+        Fits the PCA model and calculates the Jacobian of the Operation for later score calculations
+
+            Standardize -> PCA -> Standardize
+
+        """
+
         # _data = self.data
         self.mean1 = weighted_mean(self.data, self.weights)
         _data = self.data - self.mean1
@@ -137,13 +184,14 @@ class KDEContainer(object):
         }
 
     def pca_transform(self, data):
-        # _data = data
+        """The PCA transformation"""
         _data = data - self.mean1
         _data = self.pca.transform(_data)
         _data /= self.std2
         return _data
 
     def pca_inverse_transform(self, data):
+        """Inverse PCA transformation"""
         # _data = data
         _data = data * self.std2
         _data = self.pca.inverse_transform(_data)
@@ -152,11 +200,27 @@ class KDEContainer(object):
         return res
 
     def standardize_data(self):
+        """Standardize data, first fit PCA, then apply PCA transform to data"""
         self.fit_pca()
         self._data = self.pca_transform(self.data)
         # self._data = self.data
 
     def select_subset(self, data, weights, nsample=10000):
+        """
+        Selects a subset of the data
+        Parameters
+        ----------
+        data: pd.DataFrame
+            data points / samples
+        weights: np.array
+            weights for each data point
+        nsample: int
+            number of samples to draw
+
+        Returns
+        -------
+        subset: pd.DataFrame
+        """
         # if nsample > len(data):
         # nsample = len(data)
         indexes = np.arange(len(data))
@@ -166,14 +230,41 @@ class KDEContainer(object):
         return subset
 
     def construct_kde(self, bandwidth):
-        """"""
+        """
+        Trains the KDE
+
+        Parameters
+        ----------
+        bandwidth: float
+            width of the Gaussian kernel, the bandwidth
+        """
         self.bandwidth = bandwidth
         self.kde = neighbors.KernelDensity(bandwidth=self.bandwidth, kernel=self._kernel,
                                            atol=self._atol, rtol=self._rtol, breadth_first=self._breadth_first)
         self.kde.fit(self._data, sample_weight=self.weights)
 
     def random_draw(self, num, rmin=None, rmax=None, rcol="LOGR"):
-        """draws random samples from KDE maximum radius"""
+        """
+        draws random samples from KDE model
+
+        Parameters
+        ----------
+        num: int
+            number of samples to draw
+        rmin: float
+            inner minimum radius to draw above
+        rmax: float
+            outer maximum radius to draw below
+        rcol: str
+            radius column
+
+
+        Returns
+        -------
+        res: pd.DataFrame
+            random samples drawn from the KDE
+
+        """
         _res = self.kde.sample(n_samples=int(num), random_state=self.rng)
         self.res = self.pca_inverse_transform(_res)
         if (rmin is not None) or (rmax is not None):
@@ -195,17 +286,35 @@ class KDEContainer(object):
         return self.res
 
     def score_samples(self, arr):
-        """Assuming that arr is in the data format"""
+        """
+        Evaluate the probability from the KDE model, and correct using the Jacobian determinant
+
+        Assuming that arr is in the data format
+
+        Parameters
+        ----------
+        arr: pd.DataFrame
+            points to evaluate the KDE at
+
+        Returns
+        -------
+        res: np.array
+            scores of the arr
+        jacobian_det: np.array
+            Jacobian determinant
+        """
 
         arr = self.pca_transform(arr)
         res = self.kde.score_samples(arr)
         return res, self._jacobian_det
 
     def drop_kde(self):
+        """Resets the KDE and PCE model"""
         self.pca = None
         self.kde = None
 
     def drop_col(self, colname):
+        """drops a single column from the KDE data"""
         self.data = self.data.drop(columns=colname)
         self.columns = self.data.columns
         self.ndim = len(self.columns)
