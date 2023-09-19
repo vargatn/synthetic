@@ -76,6 +76,7 @@ def shuffle(tab, rng):
     """
     Returns a shuffled version of the passed DataFrame
     Uses :py:meth:`subsample` in the backend
+
     Parameters
     ----------
     tab: pd.DataFrame
@@ -115,6 +116,7 @@ def get_ndraw(nsample, nchunk):
 def subsample(tab, nrows=1000, rng=None, replace=False):
     """
     Choose rows randomly from pandas DataFrame
+
     Parameters
     ----------
     tab: pd.DataFrame
@@ -147,6 +149,7 @@ class TargetData(object):
         Wrapper for unified handling of clusters and random point tables
         Exposes richness, redshift, ra, dec columns
         Supports selecting subsets of based on richness or other parameters
+
         Parameters
         ----------
         fname: str
@@ -212,6 +215,7 @@ class TargetData(object):
     def select_inds(self, inds, bool=True):
         """
         Selects subset based on index
+
         Parameters
         ----------
         inds: np.array
