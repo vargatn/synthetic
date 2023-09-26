@@ -9,7 +9,7 @@
     emulator
     ----/cv.py        100%
     ----/emulator.py  0%
-    ----/indexer.py   0%
+    ----/indexer.py   100%
     ----/kde.py       100%
     ----/multiply.py  100%
     ----/reader.py    100%

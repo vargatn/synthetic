@@ -1097,11 +1097,23 @@ class IndexedDataContainer(object):
 
 class MultiDataLoader(object):
     def __init__(self, fnames, force_target):
+        """
+        Loader for the results of indexing, loads the number profiles and galaxy samples
+
+        Parameters
+        ----------
+        fnames: list
+            list of strings for each of the calculation chunks
+        force_target: TargetData
+            a targeg list we used for the indexing and sampling
+
+        """
         self.fnames = fnames
 
         self._get_info(force_target)
 
     def _get_info(self, force_target):
+        """Extracts info from the target data"""
         pp = pickle.load(open(self.fnames[0], "rb"))
 
         self.rcens = pp.rcens.copy()
@@ -1117,6 +1129,7 @@ class MultiDataLoader(object):
         self.survey = pp.survey
 
     def collate_samples(self):
+        """Concatenates the galaxy samples from each calculation chunk"""
         _samples = [[] for tmp in np.arange(self.nrbins)]
         self.numprof = np.zeros(self.nrbins)
         pps = []
@@ -1138,6 +1151,7 @@ class MultiDataLoader(object):
                 self.samples[j]["WEIGHT"] = self.numprof[j] / len(self.samples[j])
 
     def to_cont(self):
+        """Convert the output of parallel chunkwise calculation into a single IndexedDataContainer for later use"""
         cont = IndexedDataContainer(self.survey, self.target, numprof=self.numprof,
                                     rcens=self.rcens, redges=self.redges, rareas=self.rareas, samples=self.samples)
         return cont
