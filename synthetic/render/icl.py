@@ -294,7 +294,7 @@ class ProcMag(object):
             Load stellar mass data from the specified file.
 
         get_mag(z, band):
-            Calculate the magnitude of a red galaxy template in the specified band at the given redshift.
+            Calculate the magnitude of a red galaxy _templates in the specified band at the given redshift.
 
         get_mstar(z, band):
             Calculate the stellar mass of a galaxy in the specified band at the given redshift.
@@ -339,7 +339,7 @@ class ProcMag(object):
 
     def get_mag(self, z, band):
         """
-        Calculate the magnitude of a red galaxy template in the specified band at the given redshift.
+        Calculate the magnitude of a red galaxy _templates in the specified band at the given redshift.
 
         allows conversion of colors between DES r,i and CFHT r,i and also luminosity evolution of an ageing stellar population
 
