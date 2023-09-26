@@ -259,13 +259,23 @@ class FeatureSpaceContainer(BaseContainer):
 
 class DeepFeatureContainer(BaseContainer):
     def __init__(self, data):
+        """Feature container for DeepField datasets, This has no radial element, so it's much simpler"""
         BaseContainer.__init__(self)
         self.alldata = data
         self.weights = pd.Series(data=np.ones(len(self.alldata)), name="WEIGHT")
 
     @classmethod
     def from_file(cls, fname, flagsel=True):
+        """
+        Reads from file
 
+        Parameters
+        ----------
+        fname: str
+            file name to read from FITS or PANDAS with data key
+        flagsel: bool
+            if true, uses the 'flags" == 0 check to select entries
+        """
         if ".fit" in fname:
             _deep = fio.read(fname)
         else:
