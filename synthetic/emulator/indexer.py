@@ -175,7 +175,17 @@ class TargetData(object):
         # logger.info("initiated TargetDate in mode " + str(self.mode) + " from " + str(self.fname))
 
     def assign_values(self):
-        """Tries to guess 'mode' and exposes richness and redshift columns"""
+        """
+        Tries to guess 'mode' and exposes richness and redshift columns
+
+        "clust" mode:
+            * richness is LAMBDA_CHISQ
+            * redshift is Z_LAMBDA
+
+        "rand" mode:
+            * richness is AVG_LAMBDAOUT
+            * redshift is ZTRUE
+        """
         if self.mode is not None:
             if self.mode == "clust":
                 self.richness = self.data.LAMBDA_CHISQ
@@ -207,7 +217,7 @@ class TargetData(object):
         # logger.info("resetting TargetData with filename " + str(self.fname))
 
     def draw_subset(self, nrows, rng=None):
-        """draw random to subset of rows"""
+        """draw random to subset of rows using subsample function"""
         self.data, self.inds = subsample(self.data, nrows, rng=rng)
         self.assign_values()
         # logger.info("drawing " + str(nrows) + " subset from  TargetData with filename " + str(self.fname))
@@ -238,6 +248,7 @@ class TargetData(object):
         Selects single parameter bin from underlying data table
         In addition to columns, "redshift" and "richness" are also valid keys, these automatically refer to the
         appropriate column
+
         Parameters
         ----------
         pars: str or list
@@ -299,12 +310,18 @@ class TargetData(object):
     def from_config(cls, mode, config):
         """
         Automatically reads from config
+
         Parameters
         ----------
         mode: str
             clust or rands
         config: dict
             Config dictionary
+
+        Return
+        -------
+        TargetData instance read from config
+
         """
 
         if mode == "clust":
@@ -319,11 +336,22 @@ class TargetData(object):
 
 class SurveyData(object):
     def __init__(self, fnames, nside=16):
+        """
+         Wrapper for unified handling of survey data tables
+
+        Parameters
+        ----------
+        fnames: list
+            FITS file names of where the survey data is stored
+        nside:  int
+            healpix nside for the lookup table created from the files
+        """
         self.fnames = fnames
         self.nchunks = len(fnames)
         self.nside = nside
 
     def get_data(self, ind):
+        """Reads data for the ind-th data file from fnames WARNING: this is memory intensive"""
         fname = self.fnames[ind]
         print(fname)
         self.tab = pd.read_hdf(fname)
@@ -340,6 +368,7 @@ class SurveyData(object):
         return SurveyData(self.fnames, self.nside)
 
     def to_dict(self):
+        """Creates a dictionary container for the attribute values (NOT DATA!)"""
         infodict = {
             "fnames": self.fnames,
             "nside": self.nside,
@@ -348,10 +377,24 @@ class SurveyData(object):
 
     @classmethod
     def from_dict(cls, infodict):
+        """Creates a SurveyData instance from dictionary"""
         return cls(**infodict)
 
 
 def convert_on_disk(fnames, nprocess, nside=16):
+    """
+    Converst FITS files on disk from the Survey Data using single node parallel calculation
+
+    Parameters
+    ----------
+    fnames: list
+        list of FITS files which should be converted
+    nprocess: int
+        number of physical cores to be used
+    nside: int
+        healpix nside for splitting the files
+
+    """
     nchunks = len(fnames)
     if nprocess > nchunks:
         nprocess = nchunks
@@ -378,6 +421,7 @@ def convert_on_disk(fnames, nprocess, nside=16):
         pool.join()
 
 def _convert_chunk_run(chunks):
+    """loops through the chunks to convert them on disk"""
     try:
         for infodict in chunks:
             _converter(infodict)
@@ -385,6 +429,7 @@ def _convert_chunk_run(chunks):
         pass
 
 def _converter(info):
+    """Converts raw fits"""
     fname = info["fname"]
     nside = info["nside"]
     print("converting",fname)
@@ -397,6 +442,32 @@ def _converter(info):
 
 
 def get_flags(tab, cutlist):
+    """
+    Calculate selection indexes for a data table from a list of instructions
+
+    Example for cutlist:
+
+        DEFAULT_FLAGS = [
+            ("MOF_CM_FLAGS", "==", 0),
+            ("MOF_CM_T", "in", (0., 100)),
+            ("MOF_CM_MAG_CORRECTED_I", "in", (14, 24)),
+            (("MOF_CM_MAG_CORRECTED_G", "-", "MOF_CM_MAG_CORRECTED_R"), "in", (-4, 4)),
+            (("MOF_CM_MAG_CORRECTED_R", "-", "MOF_CM_MAG_CORRECTED_I"), "in", (-4, 4)),
+            (("MOF_CM_MAG_CORRECTED_I", "-", "MOF_CM_MAG_CORRECTED_Z"), "in", (-4, 4)),
+        ]
+
+    Parameters
+    ----------
+    tab: pd.DataFrame
+        table to apply the cut to
+    cutlist: list
+        see example above
+
+    Returns
+    -------
+    array of selection flags
+
+    """
     flags = np.ones(len(tab), dtype=bool)
     for sel in cutlist:
         # calculate input column
@@ -434,6 +505,32 @@ def get_flags(tab, cutlist):
 class MultiIndexer(object):
     def __init__(self, survey, target, fname_root, search_radius=360.,
                  nbins=50, theta_min=0.1, theta_max=100, eps=1e-3):
+        """
+        Crawls through a survey and indexes and samples all pairs around the targets of the survey.
+
+        The number of pairs is counted,
+        e.g. reads through a galaxy catalog and lists all cluster - galaxy pairs within radial bins
+
+        Parameters
+        ----------
+        survey: SurveyData
+            the survey dataset to be used as a class instance
+        target: TargetData
+            the target data to be used as aclass instance
+        fname_root: str
+            file name root for output files
+        search_radius: float
+            in arcseconds
+        nbins: int
+            number of radial bins
+        theta_min: float
+            lower edge of bins
+        theta_max: float
+            upper edge of bins
+        eps: float
+            inner bin region around -eps, +eps to catch BCG-s with get_theta_edges
+
+        """
 
         self.survey = survey
         self.target = target
@@ -448,6 +545,7 @@ class MultiIndexer(object):
         self.theta_edges, self.rcens, self.redges, self.rareas = get_theta_edges(nbins, theta_min, theta_max, eps)
 
     def _get_infodicts(self):
+        """creats instruction set dictionaries from settings"""
         nchunks = self.survey.nchunks
         infodicts = []
         for i in np.arange(nchunks):
@@ -467,7 +565,17 @@ class MultiIndexer(object):
         return infodicts
 
     def run(self, nprocess=1):
+        """
+        Performs the indxeding through the survey, THIS TAKES TIME!
 
+        Results are written to file
+
+        Parameters
+        ----------
+        nprocess: int
+            number of cores to use
+
+        """
         infodicts = self._get_infodicts()
         if nprocess > len(infodicts):
             nprocess = len(infodicts)
@@ -489,6 +597,7 @@ class MultiIndexer(object):
 
 
 def _indexer_chunk_run(chunks):
+    """Indexes each chunk (lists of infodicts"""
     try:
         for infodict in chunks:
             print("running", infodict["fname"])
@@ -501,6 +610,44 @@ def _indexer_chunk_run(chunks):
 class IndividualSurveyIndexer(object):
     def __init__(self, survey, target, theta_edges, rcens, redges, rareas, search_radius=360., nbins=50, ind=0,
                  flags=DEFAULT_FLAGS, **kwargs):
+        """
+        DEPRECATED Indexes a single file in the survey, using the ind parameter
+
+        flags default to
+
+            DEFAULT_FLAGS = [
+                ("MOF_CM_FLAGS", "==", 0),
+                ("MOF_CM_T", "in", (0., 100)),
+                ("MOF_CM_MAG_CORRECTED_I", "in", (14, 24)),
+                (("MOF_CM_MAG_CORRECTED_G", "-", "MOF_CM_MAG_CORRECTED_R"), "in", (-4, 4)),
+                (("MOF_CM_MAG_CORRECTED_R", "-", "MOF_CM_MAG_CORRECTED_I"), "in", (-4, 4)),
+                (("MOF_CM_MAG_CORRECTED_I", "-", "MOF_CM_MAG_CORRECTED_Z"), "in", (-4, 4)),
+            ]
+
+
+        Parameters
+        ----------
+        survey: SurveyData
+            survey to index
+        target: TargetData
+            targets to use
+        theta_edges: list
+            bin edges to use in total
+        rcens: list
+            radial centers for bins for the consecutive section of the bins (not counting the central region aroun 0)
+        redges: list
+            radial bin edges to use for the consecutive section of the bins (not counting the central region aroun 0)
+        rareas: list
+            bin areas to use for the consecutive section of the bins (not counting the central region aroun 0)
+        search_radius: float
+            in arcseconds
+        nbins: number of radial bins to use
+        ind: int
+            the index of the data file from the SurveyData to use
+        flags: list
+            selection flags to apply
+        kwargs
+        """
 
         if isinstance(survey, dict):
             self.survey = SurveyData.from_dict(survey)
@@ -528,6 +675,7 @@ class IndividualSurveyIndexer(object):
 
 
     def _get_data(self):
+        """extracts survey data from the internal SurveyData object"""
         self.survey.get_data(self.ind)
         if self.flags is not None:
             flags = get_flags(self.survey.tab, self.flags)
@@ -536,13 +684,23 @@ class IndividualSurveyIndexer(object):
             self.survey.tab = self.survey.tab
 
     def run(self, fname="test"):
+        """Indexes and saves the survey to file"""
         print(fname)
         # pass
-        # self.index()
-        # result = self.draw_samples()
-        # pickle.dump(result, open(fname, "wb"))
+        self.index()
+        result = self.draw_samples()
+        pickle.dump(result, open(fname, "wb"))
 
     def index(self):
+        """
+        Index all galaxies in the survey in relation to targets
+
+        Returns
+        -------
+        IndexedDataContainer
+            Results in the IndexedDataContainer format
+
+        """
         print("starting survey indexing")
         self.numprof = np.zeros(self.nbins + 2)
         self.numprofiles = np.zeros((self.target.nrow, self.nbins + 2))
@@ -658,6 +816,44 @@ class IndividualSurveyIndexer(object):
 class SurveyIndexer(object):
     def __init__(self, survey, target, theta_edges, rcens, redges, rareas, search_radius=360., nbins=50, ind=0,
                  flags=DEFAULT_FLAGS, **kwargs):
+        """
+        Indexes a single file in the survey, using the ind parameter
+
+        flags default to
+
+            DEFAULT_FLAGS = [
+                ("MOF_CM_FLAGS", "==", 0),
+                ("MOF_CM_T", "in", (0., 100)),
+                ("MOF_CM_MAG_CORRECTED_I", "in", (14, 24)),
+                (("MOF_CM_MAG_CORRECTED_G", "-", "MOF_CM_MAG_CORRECTED_R"), "in", (-4, 4)),
+                (("MOF_CM_MAG_CORRECTED_R", "-", "MOF_CM_MAG_CORRECTED_I"), "in", (-4, 4)),
+                (("MOF_CM_MAG_CORRECTED_I", "-", "MOF_CM_MAG_CORRECTED_Z"), "in", (-4, 4)),
+            ]
+
+
+        Parameters
+        ----------
+        survey: SurveyData
+            survey to index
+        target: TargetData
+            targets to use
+        theta_edges: list
+            bin edges to use in total
+        rcens: list
+            radial centers for bins for the consecutive section of the bins (not counting the central region aroun 0)
+        redges: list
+            radial bin edges to use for the consecutive section of the bins (not counting the central region aroun 0)
+        rareas: list
+            bin areas to use for the consecutive section of the bins (not counting the central region aroun 0)
+        search_radius: float
+            in arcseconds
+        nbins: number of radial bins to use
+        ind: int
+            the index of the data file from the SurveyData to use
+        flags: list
+            selection flags to apply
+        kwargs
+        """
 
         if isinstance(survey, dict):
             self.survey = SurveyData.from_dict(survey)
@@ -683,6 +879,7 @@ class SurveyIndexer(object):
         self._get_data()
 
     def _get_data(self):
+        """extracts survey data from the internal SurveyData object"""
         self.survey.get_data(self.ind)
         if self.flags is not None:
             flags = get_flags(self.survey.tab, self.flags)
@@ -691,6 +888,13 @@ class SurveyIndexer(object):
             self.survey.tab = self.survey.tab
 
     def run(self, fname="test"):
+        """
+        Indexes and saves the survey to file
+
+        First indexes the full survey, then draws a representative sample of target -- galaxy pairs balanced evenly
+        across targets
+
+        """
         print(fname)
         # pass
         self.index()
@@ -698,7 +902,15 @@ class SurveyIndexer(object):
         pickle.dump(result, open(fname, "wb"))
 
     def index(self):
+        """
+        Index all galaxies in the survey in relation to targets
 
+        Returns
+        -------
+        IndexedDataContainer
+            Results in the IndexedDataContainer format
+
+        """
         print("starting survey indexing")
         self.numprof = np.zeros(self.nbins + 2)
         self.numprofiles = np.zeros((self.target.nrow, self.nbins + 2))
@@ -746,6 +958,22 @@ class SurveyIndexer(object):
         return result
 
     def draw_samples(self, nsample=10000, rng=None):
+        """
+        Draws a subsample of all galaxies in the survey in relation to targets
+
+        Parameters
+        ----------
+        nsample: int
+            number of max samples to draw (can be less if there are not enough pairs)
+        rng: np.random.RandomState
+            random generator
+
+        Returns
+        -------
+        IndexedDataContainer
+            Results in the IndexedDataContainer format with number profile and samples
+
+        """
         # logger.info("starting drawing random subsample with nsample=" + str(nsample))
         print("starting drawing random subsample with nsample=" + str(nsample))
 

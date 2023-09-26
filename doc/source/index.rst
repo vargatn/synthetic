@@ -13,8 +13,9 @@ SYNTHETIC - synthetic galaxy clusters and images, end to end.
    Config files explained <config>
    API reference <api>
 
-
-![synthetic galaxy cluster rendered from synthetic catalog](./doc/banner.png)
+.. image:: ../banner.png
+    :width: 800
+    :alt: synthetic galaxy cluster rendered from synthetic catalog
 
 **Check out the [tutorials](./tutorial/README.md) to:**
 
@@ -24,15 +25,17 @@ SYNTHETIC - synthetic galaxy clusters and images, end to end.
 
 The package is aimed to be representative of the data analysis setup of the Dark Energy Science Consorcium (DESC) of the Legace Survey of Space and Time (LSST).
 
-***Check out the [Intro presentation](https://docs.google.com/presentation/d/1BU39hIaoyaZ_iNmb0mcigwy84mpMKAskx9NxYkrbCes/edit?usp=sharing)***
+**Check out the intro** presentation_
+
+.. _presentation: https://docs.google.com/presentation/d/1BU39hIaoyaZ_iNmb0mcigwy84mpMKAskx9NxYkrbCes/edit?usp=sharing
 
 
 Synthetic data is:
 ++++++++++++++++++
 
- * artificially generated data
- * trained to be representative of the real scenario
- * used to test and evaluate algorithms, models, and software pipelines.
+* artificially generated data
+* trained to be representative of the real scenario
+* used to test and evaluate algorithms, models, and software pipelines.
 
 Scientific scope
 ----------------
@@ -42,13 +45,14 @@ the gravitational potential wells of galaxy clusters, which enables us to estima
 Validating and calibrating the weak lensing measurement is revealed to be an complex task, and the aim of this package is to
 provide the synthetic data which is then used for testing and statistical estimators and software pipelines.
 
-Some illustrations of an earlier publication in our team is provided at the following [link](https://vargatn.github.io/synthetic/)
+Some illustrations of an earlier publication in our team is provided at the following link_.
+
+.. _link: https://vargatn.github.io/synthetic/
 
 Please see the [DESIGN doc](DESIGN.md) file for the detailed vision
 
 Features
 --------
-
 
 There are three main components of this package:
 
