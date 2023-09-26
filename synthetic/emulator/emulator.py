@@ -1,5 +1,5 @@
 """
-DOC HERE
+Emulator.py
 """
 
 import fitsio as fio
@@ -35,18 +35,60 @@ from ..tools import partition
 
 
 def get_angle(num, rng):
+    """draw random angles in radians"""
     angle = rng.uniform(0, np.pi, size=num)
     return angle
 
 
 class BaseContainer(object):
-
     def __init__(self):
+        """
+        Base class for Feature Space Container
+
+        Main goal is to containe
+
+            * alldata
+            * features extracted / consturcted from alldata
+            * weights for each entry
+        """
         self.alldata = None
         self.features = None
         self.weights = None
 
     def construct_features(self, columns, limits=None, logs=None, **kwargs):
+        """
+        Create features from raw data, this includes complicated operations as well
+
+        Examples
+        --------
+            "columns": [
+                ("GABS", ("ellipticity_1_true", "ellipticity_2_true", "SQSUM")),
+                ("SIZE", "size_true"),
+                ("MAG_I", "mag_i"),
+                ("COLOR_G_R", ("mag_g", "mag_r", "-")),
+                ("COLOR_R_I", ("mag_r", "mag_i", "-")),
+                ("COLOR_I_Z", ("mag_i", "mag_z", "-")),
+                ("STELLAR_MASS", "stellar_mass"),
+                ("HALO_MASS", "halo_mass")
+            ],
+            "logs": [False, True, False, False, False, False, True, True],
+            "limits": [(0., 1.), (-1, 5), (17, 25), (-1, 3), (-1, 3), (-1, 3), (10**3, 10**13), (10**9, 10**16)],
+
+        Thus we can specify that a desired feature is the squared sum of two columns in the alldata
+
+        Supported operations are + - * / SQSUM
+
+
+        Parameters
+        ----------
+        columns: tuple
+            instructions about the feature construction, see example above
+        limits: tuple
+            value limits after the feature is constructed
+        logs: list
+            bool list if the feature should be taken the log of or not
+        kwargs
+        """
         self.columns = columns
         self.limits = limits
         self.logs = logs
@@ -107,6 +149,7 @@ class BaseContainer(object):
               self.features[col[0]] = np.log10(self.features[col[0]])
 
     def to_kde(self, **kwargs):
+        """Convert to KDE container"""
         res = KDEContainer(self.features, weights=self.weights)
         return res
 
@@ -114,8 +157,20 @@ class BaseContainer(object):
 class FeatureSpaceContainer(BaseContainer):
     def __init__(self, info):
         """
-        This needs to be done first
+        Container for galaxy features as in number profiles and target -- galaxy pair samples
+
+        This has a radial galaxy number profile in bins described by rcens, redges, rareas
+
+        A SurveyData and TargetData object and a number profile in the radial bins, as well as a galaxy sample profile
+
+        The alldata of the BaseContainer parent class is created from the samples
+
+        Parameters
+        ----------
+        info: indexer.IndexedDataContainer
+            the result fo the indexing operation
         """
+
         BaseContainer.__init__(self)
 
         self.rcens = info.rcens
@@ -137,6 +192,7 @@ class FeatureSpaceContainer(BaseContainer):
         self.nobj = self.target.nrow
 
     def surfdens(self, icol=0, scaler=1):
+        """Calculate the surface density of galaxies"""
         if self.logs[icol]:
             arr = 10**self.features.values[:, icol]
         else:
@@ -145,7 +201,24 @@ class FeatureSpaceContainer(BaseContainer):
         return vals
 
     def downsample(self, nmax=10000, r_key="LOGR", nbins=40, rng=None, **kwargs):
-        """Radially balanced downsampling"""
+        """
+        Radially balanced downsampling
+
+        Parameters
+        ----------
+        nmax: int
+            max number of objects to keep
+        r_key: str
+            key for the radial position column in the dataframe
+        nbins: number of bins
+        rng: np.random.RandomState
+        kwargs
+
+        Returns
+        -------
+        KDEContainer
+            a downsampled version of the dataset in KDE container format
+        """
 
         if rng is None:
             rng = np.random.RandomState()
