@@ -292,6 +292,24 @@ class DeepFeatureContainer(BaseContainer):
 ##########################################################################
 
 def construct_wide_container(dataloader, settings, nbins=100, nmax=5000, seed=None, drop=None, **kwargs):
+    """
+    Creates a FeatureSpaceContainer out of
+    Parameters
+    ----------
+    dataloader: IndexedDataContainer
+        IndexedDataContainer of Wide field data
+    settings: dict
+        dict unpacked to columns, limits, logs
+    nbins
+    nmax
+    seed
+    drop
+    kwargs
+
+    Returns
+    -------
+
+    """
     fsc = FeatureSpaceContainer(dataloader)
     fsc.construct_features(**settings)
     # cont = fsc.to_dual(r_normalize=r_normalize)
@@ -307,6 +325,20 @@ def construct_wide_container(dataloader, settings, nbins=100, nmax=5000, seed=No
 
 
 def construct_deep_container(data, settings, seed=None, frac=1., drop=None):
+    """
+
+    Parameters
+    ----------
+    data
+    settings
+    seed
+    frac
+    drop
+
+    Returns
+    -------
+
+    """
     fsc = DeepFeatureContainer(data)
     fsc.construct_features(**settings)
     cont = fsc.to_kde()
