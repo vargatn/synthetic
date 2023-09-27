@@ -21,6 +21,24 @@ from tools import partition
 
 
 def infomaker(maxnum, medsfile, outfile_root, nchunk=100):
+    """
+    Prepares the instructions for metacalibration
+
+    Parameters
+    ----------
+    maxnum: int
+        number of objects to process,
+    medsfile: the MEDS data file which contains the image cutouts and PSF we will metacalibrate
+    outfile_root: str
+        file path to the output files, file numbers will be appended to this
+    nchunk: int
+        number of chunks to split the calculation into
+
+    Returns
+    -------
+    list of dictionaries with instructions
+
+    """
     lst = partition(np.arange(maxnum), n=nchunk)
 
     infodicts = []
@@ -37,6 +55,22 @@ def infomaker(maxnum, medsfile, outfile_root, nchunk=100):
 
 
 def collater(infodicts, ):
+    """
+    Reads the metacal output file chunks from disc and collates them into a single pd.DataFrame
+
+    Due to how error messages are stored, the actual error message has to be stripped,
+    use the metacal flag to filter objects
+
+    Parameters
+    ----------
+    infodicts: list
+        list of instruction dictionaries created by infomaker
+
+    Returns
+    -------
+    pd.DataFrame of metacal results
+
+    """
     tab = []
     names = []
     for i, info in enumerate(infodicts):
