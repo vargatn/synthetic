@@ -293,21 +293,27 @@ class DeepFeatureContainer(BaseContainer):
 
 def construct_wide_container(dataloader, settings, nbins=100, nmax=5000, seed=None, drop=None, **kwargs):
     """
-    Creates a FeatureSpaceContainer out of
+    Creates a FeatureSpaceContainer for the Wide field dataset
+
     Parameters
     ----------
     dataloader: IndexedDataContainer
         IndexedDataContainer of Wide field data
     settings: dict
         dict unpacked to columns, limits, logs
-    nbins
-    nmax
-    seed
-    drop
+    nbins: int
+        number of radial bins
+    nmax: int
+        number of max pairs to downsample to
+    seed: int
+        random seed
+    drop: str
+        Column name to remove from the catalog
     kwargs
 
     Returns
     -------
+    A dictionary containing the Settings as well as the FeatureSpaceContainer with the "container" key
 
     """
     fsc = FeatureSpaceContainer(dataloader)
@@ -326,17 +332,23 @@ def construct_wide_container(dataloader, settings, nbins=100, nmax=5000, seed=No
 
 def construct_deep_container(data, settings, seed=None, frac=1., drop=None):
     """
+    Creates a FeatureSpaceContainer for the Deep field dataset
 
     Parameters
     ----------
-    data
-    settings
-    seed
-    frac
-    drop
-
+    data: pd.DataFrame
+        the deep field data, Since there is no radial
+    settings: dict
+        dict unpacked to columns, limits, logs
+    seed: int
+        random seed
+    frac: float
+        fraction of the catalog to keep, between 0 and 1
+    drop: str
+        column to not include in the container dataset
     Returns
     -------
+    A dictionary containing the Settings as well as the FeatureSpaceContainer with the "container" key
 
     """
     fsc = DeepFeatureContainer(data)
@@ -357,6 +369,109 @@ def make_classifier_infodicts(wide_cr_clust, wide_r_ref, wide_cr_rands,
                               deep_c, deep_smc, columns,
                               nsamples=1e5, nchunks=1, bandwidth=0.1,
                               rmin=None, rmax=None, rcol="LOGR"):
+    """
+
+    Create the instructions for calculating probability scores (logP).
+
+    This is done by drawing proposal samples, and then splitting them into chunks so that they can be executed
+    on multiply cores on a single node
+
+
+    Examples
+    ---------
+
+    This is how the respective dictionaries look like (Note that each will have an additional 'container' key with the actual data)
+
+    ###################### PART B ###################################
+    # part (B) feature aliases and definitions from the deep / reference dataset for comparison with the wide dataset
+    deep_c_settings = {
+        "columns": [
+            ("MAG_I", "mag_i"),
+            ("COLOR_G_R", ("mag_g", "mag_r", "-")),
+            ("COLOR_R_I", ("mag_r", "mag_i", "-")),
+        ],
+        "logs": [False, False, False, False],
+        "limits": [(17, 22.5), (-1, 3), (-1, 3), (-1, 3)],
+    }
+
+    # part (B) feature aliases and definitions for all features we want to model and inherit from the deep / reference fields
+    deep_smc_settings = {
+        "columns": [
+            ("GABS", ("ellipticity_1_true", "ellipticity_2_true", "SQSUM")),
+            ("SIZE", "size_true"),
+            ("MAG_I", "mag_i"),
+            ("COLOR_G_R", ("mag_g", "mag_r", "-")),
+            ("COLOR_R_I", ("mag_r", "mag_i", "-")),
+            ("COLOR_I_Z", ("mag_i", "mag_z", "-")),
+            ("STELLAR_MASS", "stellar_mass"),
+            ("HALO_MASS", "halo_mass")
+        ],
+        "logs": [False, True, False, False, False, False, True, True],
+        "limits": [(0., 1.), (-1, 5), (17, 25), (-1, 3), (-1, 3), (-1, 3), (10**3, 10**13), (10**9, 10**16)],
+    }
+
+    ###################### PART A ###################################
+    # feature aliases and definitions from wide dataset
+    wide_cr_settings = {
+        "columns": [
+            ("MAG_I", "mag_i"),
+            ("COLOR_G_R", ("mag_g", "mag_r", "-")),
+            ("COLOR_R_I", ("mag_r", "mag_i", "-")),
+            ("LOGR", "R"),
+        ],
+        "logs": [False, False, False, True],
+        "limits": [(17, 22.5), (-1, 3), (-1, 3), (1e-3, 16.), ],
+    }
+
+    # the radial profile around clusters from the wide dataset
+    wide_r_settings = {
+        "columns": [
+            ("MAG_I", "mag_i"),
+            ("LOGR", "R"),
+        ],
+        "logs": [False, True,],
+        "limits": [(17, 22.5), (1e-3, 16.),],
+    }
+    # features to use for rejection sampling
+    columns = {
+        "cols_dc": ["COLOR_G_R", "COLOR_R_I",],
+        "cols_wr": ["LOGR",],
+        "cols_wcr": ["COLOR_G_R", "COLOR_R_I", "LOGR",],
+    }
+
+
+    Parameters
+    ----------
+    wide_cr_clust: dict
+        container for the target sample
+    wide_r_ref: dict
+        container for the target sample restricted to Radius features
+    wide_cr_rands: dict
+        container for the reference random point sample (that is galaxy pairs around random points)
+    deep_c: dict
+        container for the deep field sample, restricted to the features in the WIDE data, but with NO radius column
+    deep_smc: dict
+        container for the deep field sample, with all features wanted from the deep field catalog (Things you
+        can only see or measure in the deep field sample)
+    columns: list
+        list of str for the column names to be matched between the different containers,
+    nsamples: int
+        total number of samples to draw, for these the logP, that is the score will be evaluated later
+    nchunks: int
+        number of chunks to split the calculation into, this is how many cores you want to use
+    bandwidth: flaot
+        KDE bandwidth (in the eigen Frame of features), as fraction of standard deviation after transformation, 0.1 is a good guess
+    rmin: float
+        minimum radial range to consider in sampling (due to the power law surface density this should be set to an interval)
+    rmax: float
+            maximum radial range to consider in sampling (due to the power law surface density this should be set to an interval)
+    rcol: str
+        key for the Radial column in the containers
+
+    Returns
+    -------
+        Infodicts, samples
+    """
 
     deep_smc_emu = deep_smc["container"]
     deep_smc_emu.standardize_data()
@@ -527,6 +642,7 @@ def calc_scores(info):
 
 
 def run_scores(infodicts):
+    """Calculate the probaility scores for each point"""
     pool = mp.Pool(processes=len(infodicts))
     try:
         pp = pool.map_async(calc_scores, infodicts)
