@@ -1,5 +1,8 @@
 """
 The non standard dependencies are ngmix (numba)
+
+Thanks for Spencer Everett for helping with the code and making sense of metacalibration
+
 """
 
 
@@ -90,6 +93,18 @@ def collater(infodicts, ):
 
 class MetacalFitter(object):
     def __init__(self, medsfile, seed=None):
+        """
+        Handler class for metacalibration
+
+        Thanks for Spencer Everett for helping with the code!!!
+
+        Parameters
+        ----------
+        medsfile: MEDS file
+            data file for metacal to work with in the MEDS format
+        seed: int
+            random seed
+        """
         self.medsfile = medsfile
 
         # for some reason this is bugged if you
@@ -99,21 +114,22 @@ class MetacalFitter(object):
 
         self.set_seed(seed)
 
-        return
 
     def set_seed(self, seed=None):
+        """sets seed"""
         if seed is None:
             # current time in microseconds
             seed = int(1e6*time.time())
 
         self.seed = seed
 
-        return
 
     def get_obs_list(self, iobj):
+        """extract obs list from MEDS files"""
         return self.meds.get_obslist(iobj)
 
     def get_jacobians(self, iobj):
+        """Extract image jacobian from MEDS files"""
         Njac = len(self.meds.get_jacobian_list(iobj))
 
         jacobians = [self.meds.get_ngmix_jacobian(iobj, icutout)
@@ -122,9 +138,19 @@ class MetacalFitter(object):
         return jacobians
 
     def get_obj_info(self, iobj):
-        '''
+        """
         Setup object property dictionary used to compile fit params later on
-        '''
+
+
+        Parameters
+        ----------
+        iobj: int
+            index of object
+
+        Returns
+        -------
+        info dictionary about object
+        """
 
         obj = self.meds[iobj]
 
@@ -142,16 +168,47 @@ class MetacalFitter(object):
 
     def get_prior(self, pixel_scale):
         """
-        pix_scale: The pixel scale of the image, in arcsec / pixel
+        Parameter priors for fitting
+
+        Prior on ellipticity. The details don't matter, as long as it regularizes the fit.
+        This one is from Bernstein & Armstrong 2014
+
+            g_sigma = 0.3
+            g_prior = ngmix.priors.GPriorBA(g_sigma)
+
+        For center prior  use pixel_scale as a guess. With 2-d gaussian prior on the center row and column center
+        (relative to the center of the jacobian, which would be zero) and the sigma of the gaussians
+
+        T prior.  This one is flat, but another uninformative you might try is the two-sided error function (TwoSidedErf).
+        NOTE: T units are arcsec^2 but can be slightly negative, especially for stars if the PSF is mis-estimated
+
+            Tminval = -1.0 # arcsec squared
+            Tmaxval = 1000
+            T_prior = ngmix.priors.FlatPrior(Tminval, Tmaxval)
+
+        The Flux prior is also flat
+
+            Fminval = -1.e1
+            Fmaxval = 1.e5
+            F_prior = ngmix.priors.FlatPrior(Fminval, Fmaxval)
 
 
+        Parameters
+        ----------
+        pix_scale: float
+            The pixel scale of the image, in arcsec / pixel
+
+        Returns
+        -------
+        ngmix.joint_prior.PriorSimpleSep
+
+        """
         # This bit is needed for ngmix v2.x.x
         # won't work for v1.x.x
         #rng = np.random.RandomState(self.seed)
 
         # prior on ellipticity.  The details don't matter, as long
         # as it regularizes the fit.  This one is from Bernstein & Armstrong 2014
-        """
         g_sigma = 0.3
         g_prior = ngmix.priors.GPriorBA(g_sigma)
 
@@ -192,12 +249,10 @@ class MetacalFitter(object):
         return prior
 
     def add_mcal_responsivities(self, mcal_res, mcal_shear):
-        '''
-        Compute and add the mcal responsivity values to the output
-        result dict from get_metacal_result()
-
+        """
+        Compute and add the mcal responsivity values to the output result dict from get_metacal_result()
         NOTE: These are only for the selection-independent component!
-        '''
+        """
 
         # Define full responsivity matrix, take inner product with shear moments
         r11 = (mcal_res['1p']['g'][0] - mcal_res['1m']['g'][0]) / (2*mcal_shear)
@@ -222,12 +277,21 @@ class MetacalFitter(object):
         return mcal_res
 
     def mcal_dict2tab(self, mcal, obj_info):
-        '''
-        mcal is the dict returned by ngmix.get_metacal_result()
+        """
 
-        obj_info is an array with MEDS identification info like id, ra, dec
+        Parameters
+        ----------
+        mcal: dict
+            mcal is the dict returned by ngmix.get_metacal_result()
+        obj_info: list
+            obj_info is an array with MEDS identification info like id, ra, dec
         not returned by the function
-        '''
+
+        Returns
+        -------
+        metacal output data table
+
+        """
 
         # Annoying, but have to do this to make Table from scalars
         for key, val in obj_info.items():
@@ -266,11 +330,35 @@ class MetacalFitter(object):
 
     def fit_obj(self, iobj, pars=None, ntry=4, psf_model='gauss',
                 gal_model='gauss', vb=False):
-        '''
+        """
         Run metacal fit for a single object of given index
 
-        pars: mcal running parameters
-        '''
+        Default pars are
+
+            mcal_shear = 0.01
+            lm_pars = {'maxfev':2000, 'xtol':5.0e-5, 'ftol':5.0e-5}
+            max_pars = {'method':'lm', 'lm_pars':lm_pars, 'find_center':True}
+            metacal_pars = {'step':mcal_shear}
+
+        Parameters
+        ----------
+        iobj: int
+            index of object to fit
+        pars: dict
+            mcal running parameters
+        ntry: int
+            number of trials to fit
+        psf_model: str
+            string description of PSF model, default is gauss, best left at default
+        gal_model: str
+            string description of galaxy light model, default is gauss, best left at default
+        vb: bool
+            verbose or not
+
+        Returns
+        -------
+        metacal results for object
+        """
 
         obj_info = self.get_obj_info(iobj)
 
@@ -319,6 +407,15 @@ class MetacalFitter(object):
 
 
 def run_mcal(info):
+    """
+    Performs metacalibration on a single instruction dictionary, writes results to disk
+
+    Parameters
+    ----------
+    info: dict
+        instruction dictionary created by the infomaker
+
+    """
     medsfile = info["medsfile"]
     outfile = info["outfile"]
     outdir = info["outdir"]
@@ -372,7 +469,9 @@ def call_chunks(infodicts):
 
 def multi_mcal(infodicts, nprocess=1):
     """
-    OpenMP style parallelization
+    OpenMP style parallelization for metacalibration
+
+
     Separates tasks into chunks, and passes each chunk for an independent process
     for serial evaulation via :py:func:`call_chunks`
     Parameters

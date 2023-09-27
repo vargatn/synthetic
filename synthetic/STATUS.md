@@ -5,7 +5,7 @@
     Sphinx autodoc built 0%
 
     tools.py        100%
-    mcal.py         0%
+    mcal.py         100%
     emulator
     ----/cv.py        100%
     ----/emulator.py  100%
