@@ -371,7 +371,7 @@ def make_classifier_infodicts(wide_cr_clust, wide_r_ref, wide_cr_rands,
                               rmin=None, rmax=None, rcol="LOGR"):
     """
 
-    Create the instructions for calculating probability scores (logP).
+    Create the instructions for calculating probability scores (logP), Using target and reference random samples
 
     This is done by drawing proposal samples, and then splitting them into chunks so that they can be executed
     on multiply cores on a single node
@@ -506,6 +506,18 @@ def make_classifier_infodicts(wide_cr_clust, wide_r_ref, wide_cr_rands,
 
 
 def calc_scores2(info):
+    """
+    Evaluates the scores for the samples using instructions from the make_classifier_infodicts
+
+    Parameters
+    ----------
+    info: dict
+        instructions (including samples)
+
+    Returns
+    -------
+    logP scores
+    """
     scores = pd.DataFrame()
     try:
         columns = info["columns"]
@@ -553,6 +565,7 @@ def calc_scores2(info):
 
 
 def run_scores2(infodicts):
+    """Parallelized scoring Use it with random points!"""
     pool = mp.Pool(processes=len(infodicts))
     try:
         pp = pool.map_async(calc_scores2, infodicts)
@@ -572,6 +585,47 @@ def run_scores2(infodicts):
 def make_naive_infodicts(wide_cr, wide_r, deep_c, deep_smc, columns,
                          nsamples=1e5, nchunks=1, bandwidth=0.1,
                          rmin=None, rmax=None, rcol="LOGR"):
+    """
+
+    DEPRECATED Create the instructions for calculating probability scores (logP)
+
+    This is done by drawing proposal samples, and then splitting them into chunks so that they can be executed
+    on multiply cores on a single node
+
+    see make_classifier_infodicts for examples
+
+
+    Parameters
+    ----------
+    wide_cr: dict
+        container for the target sample
+    wide_r: dict
+        container for the target sample restricted to Radius features
+    deep_c: dict
+        container for the deep field sample, restricted to the features in the WIDE data, but with NO radius column
+    deep_smc: dict
+        container for the deep field sample, with all features wanted from the deep field catalog (Things you
+        can only see or measure in the deep field sample)
+    columns: list
+        list of str for the column names to be matched between the different containers,
+    nsamples: int
+        total number of samples to draw, for these the logP, that is the score will be evaluated later
+    nchunks: int
+        number of chunks to split the calculation into, this is how many cores you want to use
+    bandwidth: flaot
+        KDE bandwidth (in the eigen Frame of features), as fraction of standard deviation after transformation, 0.1 is a good guess
+    rmin: float
+        minimum radial range to consider in sampling (due to the power law surface density this should be set to an interval)
+    rmax: float
+            maximum radial range to consider in sampling (due to the power law surface density this should be set to an interval)
+    rcol: str
+        key for the Radial column in the containers
+
+    Returns
+    -------
+        Infodicts, samples
+    """
+
     deep_smc_emu = deep_smc["container"]
     deep_smc_emu.standardize_data()
     deep_smc_emu.construct_kde(bandwidth)
@@ -604,6 +658,18 @@ def make_naive_infodicts(wide_cr, wide_r, deep_c, deep_smc, columns,
 
 
 def calc_scores(info):
+    """
+    Evaluates the scores for the samples using instructions from the make_naive_infodicts
+
+    Parameters
+    ----------
+    info: dict
+        instructions (including samples)
+
+    Returns
+    -------
+    logP scores
+    """
     try:
         columns = info["columns"]
         bandwidth = info["bandwidth"]
@@ -642,7 +708,7 @@ def calc_scores(info):
 
 
 def run_scores(infodicts):
-    """Calculate the probaility scores for each point"""
+    """Parallelized scoring Use it with the naive infodicts!"""
     pool = mp.Pool(processes=len(infodicts))
     try:
         pp = pool.map_async(calc_scores, infodicts)
@@ -662,6 +728,23 @@ def run_scores(infodicts):
 ##############################################################
 
 def read_concentric(score_path_expr, m_factor=20, seed=6):
+    """
+    Reads the parallelized output from disk
+
+    Parameters
+    ----------
+    score_path_expr: str
+        regular expression to find the output files, e.g. my_file_*
+    m_factor: float
+        We will accept 1 / m_factor of the sampled points
+    seed: int
+        random seed
+
+    Returns
+    -------
+    resampled points
+
+    """
     fname_scores = np.sort(glob.glob(score_path_expr))
     fname_samples = []
     for _fname in fname_scores:

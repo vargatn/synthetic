@@ -8,7 +8,7 @@
     mcal.py         0%
     emulator
     ----/cv.py        100%
-    ----/emulator.py  0%
+    ----/emulator.py  100%
     ----/indexer.py   100%
     ----/kde.py       100%
     ----/multiply.py  100%
