@@ -1,7 +1,7 @@
 # SYNTHETIC - synthetic galaxy clusters and images, end to end.
 
 
-![synthetic galaxy cluster rendered from synthetic catalog](./doc/banner.png)
+![synthetic galaxy cluster rendered from synthetic catalog](docs/banner.png)
 
 **Check out the [tutorials](./tutorial/README.md) to:**
 
