@@ -70,6 +70,9 @@ and use the [checkup script](./tutorial/env_checkup.py)
 
 If this runs without errors, then you are set to go!
 
+In addition, you can use our automated test integration suite to check the scientific functioning of the package 
+(These are based on the tutorials, so feel free to read them for more explanations)
+
 ## Manual Installation
 
 At the moment this package is installed from github, we are actively working to bring this to conda and pip
